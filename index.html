@@ -3,55 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blox Fruits - Guia & Códigos</title>
+    <title>Meu Blog de Animes & Mangás</title>
     
     <style>
-        /* Configurações de Cores e Estilo Base */
+        /* Configurações Gerais */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0d1117; /* Fundo escuro Gamer */
-            color: #c9d1d9; /* Texto claro */
+            background-color: #121212;
+            color: #ffffff;
         }
 
-        /* Cabeçalho Gamer com Degradê Neon */
+        /* Cabeçalho e Menu */
         header {
-            background: linear-gradient(135deg, #161b22 0%, #0f141c 100%);
-            padding: 25px 40px;
+            background-color: #1c1c1c;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid #ffaa00; /* Dourado Lendário */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 3px solid #1b4d3e;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
 
         header .logo-container {
-            border-left: 5px solid #ff4400; /* Laranja Fruta do Fogo */
-            padding-left: 15px;
+            border-left: 4px solid #1b4d3e;
+            padding-left: 10px;
         }
 
         header h1 {
             margin: 0;
             color: #ffffff;
-            font-size: 32px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 68, 0, 0.5);
+            font-size: 28px;
         }
 
         header p {
             margin: 5px 0 0 0;
-            color: #8b949e;
+            color: #aaaaaa;
             font-size: 14px;
         }
 
-        /* Menu de Navegação */
         nav {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
@@ -60,32 +56,28 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 25px;
+            gap: 20px;
         }
 
         nav ul li a {
             color: #ffffff;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 5px;
+            transition: color 0.3s;
         }
 
         nav ul li a:hover, nav ul li a.active {
-            color: #ffaa00;
-            background-color: #21262d;
+            color: #1b4d3e;
         }
 
-        /* Caixa de Busca */
+        /* Barra de Pesquisa */
         .search-container input {
-            padding: 10px 18px;
+            padding: 10px 15px;
             width: 250px;
-            border: 2px solid #30363d;
-            border-radius: 25px;
-            background-color: #0d1117;
+            border: 2px solid #333333;
+            border-radius: 20px;
+            background-color: #2b2b2b;
             color: white;
             font-size: 14px;
             transition: all 0.3s ease;
@@ -93,238 +85,195 @@
 
         .search-container input:focus {
             outline: none;
-            border-color: #ffaa00;
-            width: 320px; 
-            box-shadow: 0 0 10px rgba(255, 170, 0, 0.4);
+            border-color: #1b4d3e;
+            width: 300px; 
+            box-shadow: 0 0 8px rgba(27, 77, 62, 0.6);
         }
 
-        /* Container Principal */
         main {
-            padding: 30px 20px;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Box de Destaque */
         .welcome-box {
-            background-color: #161b22;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 35px;
-            border-left: 6px solid #ffaa00;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .welcome-box h2 {
-            margin-top: 0;
-            color: #ffffff;
+            background-color: #1c1c1c;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #1b4d3e;
         }
 
         .welcome-box .author {
-            color: #ffaa00;
+            color: #1b4d3e;
             font-style: italic;
             font-size: 14px;
         }
 
         section {
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         h2 {
-            border-left: 5px solid #ff4400;
-            padding-left: 12px;
+            border-left: 5px solid #1b4d3e;
+            padding-left: 10px;
             color: #ffffff;
-            font-size: 24px;
-            margin-bottom: 25px;
         }
 
-        /* Grid dos Cards de Frutas e Dicas */
         .grid-container {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        /* Cards do Blog */
+        /* Cards Estilizados */
         .card {
-            background-color: #161b22;
-            border-radius: 12px;
+            background-color: #1c1c1c;
+            border-radius: 8px;
             padding: 15px;
-            width: 270px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            width: 265px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            border: 1px solid #30363d;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #ffaa00;
+            gap: 10px;
+            border: 1px solid #2b2b2b;
         }
 
         .card img {
             width: 100%;
-            height: 180px;
+            height: 350px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 4px;
         }
 
         .card h3 {
             margin: 5px 0;
             color: #ffffff;
-            font-size: 20px;
         }
 
         .card p {
-            color: #8b949e;
+            color: #cccccc;
             font-size: 14px;
-            line-height: 1.5;
-            margin: 0;
+            height: 60px;
+            overflow: hidden;
         }
-
-        .rarity {
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 4px 8px;
-            border-radius: 4px;
-            width: fit-content;
-        }
-        .mythical { background-color: #a335ee; color: white; }
-        .legendary { background-color: #ff7f00; color: white; }
-        .rare { background-color: #0070dd; color: white; }
 
         /* Curtidas e Comentários */
         .actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 5px;
         }
 
         .btn-like {
-            background-color: #21262d;
+            background-color: #2b2b2b;
             color: white;
-            border: 1px solid #30363d;
-            padding: 8px 16px;
+            border: 1px solid #444444;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s;
         }
 
         .btn-like.liked {
-            background-color: #ff4400;
-            border-color: #ff4400;
+            background-color: #1b4d3e;
+            border-color: #1b4d3e;
         }
 
         .comments-section {
             margin-top: 10px;
-            border-top: 1px solid #30363d;
+            border-top: 1px solid #333333;
             padding-top: 10px;
         }
 
         .comments-list {
-            max-height: 70px;
+            max-height: 60px;
             overflow-y: auto;
             margin-bottom: 10px;
             font-size: 13px;
-            color: #c9d1d9;
+            color: #dddddd;
             display: flex;
             flex-direction: column;
             gap: 5px;
         }
 
         .comment-item {
-            background: #21262d;
-            padding: 6px 10px;
-            border-radius: 6px;
+            background: #2b2b2b;
+            padding: 5px 8px;
+            border-radius: 4px;
         }
 
         .comment-input-container {
             display: flex;
-            gap: 8px;
+            gap: 5px;
         }
 
         .comment-input-container input {
             flex: 1;
-            padding: 8px;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
+            padding: 6px;
+            background-color: #2b2b2b;
+            border: 1px solid #444444;
             color: white;
-            border-radius: 6px;
-            font-size: 13px;
+            border-radius: 4px;
         }
 
         .comment-input-container button {
-            background-color: #ff4400;
+            background-color: #1b4d3e;
             color: white;
             border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Paginação */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #1c1c1c;
+            color: white;
+            border: 1px solid #333333;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        /* PÁGINA 2: CÓDIGOS E REPRODUTOR */
-        #aba-codigos {
+        .pagination button.active {
+            background-color: #1b4d3e;
+            border-color: #1b4d3e;
+        }
+
+        /* ABA DE ASSISTIR (PÁGINA 2) */
+        #aba-assistir {
             display: none;
         }
 
-        .code-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #161b22;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            border: 1px solid #30363d;
-        }
-
-        .code-table th, .code-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .code-table th {
-            background-color: #21262d;
-            color: #ffaa00;
-        }
-
-        .code-badge {
-            background-color: #238636;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 14px;
-        }
-
-        /* Simulador de Vídeo do Up de Fruta */
         .player-container {
-            background-color: #161b22;
-            border-radius: 12px;
+            background-color: #1c1c1c;
+            border-radius: 8px;
             padding: 30px;
             text-align: center;
-            border: 1px solid #30363d;
+            border: 1px solid #2b2b2b;
         }
 
         .video-mock {
             width: 100%;
-            max-width: 750px;
-            height: 400px;
+            max-width: 800px;
+            height: 450px;
             background-color: #000;
             margin: 0 auto 20px auto;
             border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid #ffaa00;
+            border: 2px solid #1b4d3e;
             position: relative;
+            overflow: hidden;
         }
 
         .video-mock img {
@@ -332,11 +281,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         .play-button {
-            font-size: 65px;
+            font-size: 60px;
             color: #ffffff;
             cursor: pointer;
             z-index: 2;
@@ -345,18 +294,37 @@
 
         .play-button:hover {
             transform: scale(1.1);
-            color: #ffaa00;
+            color: #1b4d3e;
         }
 
-        /* Rodapé */
+        .anime-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .anime-thumb {
+            background-color: #2b2b2b;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 1px solid #444444;
+        }
+
+        .anime-thumb:hover, .anime-thumb.active {
+            background-color: #1b4d3e;
+            border-color: #1b4d3e;
+        }
+
         footer {
             text-align: center;
-            padding: 25px;
-            background-color: #161b22;
-            margin-top: 60px;
-            border-top: 1px solid #30363d;
-            color: #8b949e;
-            font-size: 14px;
+            padding: 20px;
+            background-color: #1c1c1c;
+            margin-top: 40px;
+            color: #aaaaaa;
         }
     </style>
 </head>
@@ -364,145 +332,161 @@
 
     <header>
         <div class="logo-container">
-            <h1>Blox Fruits - Hub</h1>
-            <p>Dicas de Frutas, Locais de Farm e Códigos Ativos</p>
+            <h1>Meu blog do roblox</h1>
+            <p>Vou compartilhar sobre animes e mangás</p>
         </div>
         <nav>
             <ul>
-                <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Notícias & Frutas</a></li>
-                <li><a id="nav-p2" onclick="mudarAba(2)">Códigos & Showcase</a></li>
+                <li><a id="nav-p1" class="active" onclick="mudarPagina(1)">Página 1 (Blog)</a></li>
+                <li><a id="nav-p2" onclick="mudarPagina(2)">Página 2 (Assistir)</a></li>
             </ul>
             <div class="search-container">
-                <input type="text" id="searchBar" placeholder="Procurar fruta ou post..." oninput="filtrarGeral()">
+                <input type="text" id="searchBar" placeholder="Pesquisar no blog..." oninput="filtrarConteudo()">
             </div>
         </nav>
     </header>
 
     <main>
+        <!-- CONTEÚDO DA PÁGINA 1 (BLOG) -->
         <div id="aba-blog">
             <div class="welcome-box">
-                <h2>Análise de Atualização & Meta</h2>
+                <h2>Meu Primeiro Post</h2>
                 <p class="author">Por: Vitor Hugo de Almeida</p>
-                <p>Fala galera! Sejam bem-vindos ao Hub definitivo de Blox Fruits. Confira abaixo os tiers de frutas mais fortes para PvP e Raids e navegue até a aba de códigos para garantir seu 2x de XP!</p>
+                <p>Boas-vindas ao meu novo blog! Explore os mangás abaixo ou vá para a Página 2 para assistir aos episódios!</p>
             </div>
 
             <section>
-                <h2>Frutas em Destaque no Meta</h2>
+                <h2>Mangás e Animes em Alta</h2>
                 <div class="grid-container">
                     
-                    <div class="card" data-title="Kitsune Fruit">
-                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&auto=format&fit=crop&q=80" alt="Kitsune">
-                        <span class="rarity mythical">Mítica</span>
-                        <h3>Kitsune Fruit</h3>
-                        <p>A fruta com maior velocidade de movimento e excelente controle de área do jogo atualmente.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <!-- JUJUTSU KAISEN -->
+                    <div class="card" data-title="Jujutsu Kaisen">
+                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&auto=format&fit=crop&q=80" alt="Jujutsu Kaisen">
+                        <h3>Jujutsu Kaisen</h3>
+                        <p>Lutas intensas e feitiçaria em um mundo infestado de maldições perigosas.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">❤️ <span class="like-count">0</span></button></div>
                         <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
                     </div>
 
-                    <div class="card" data-title="Dough Fruit">
-                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&auto=format&fit=crop&q=80" alt="Dough">
-                        <span class="rarity mythical">Mítica</span>
-                        <h3>Dough Fruit</h3>
-                        <p>Imbatível para combos PvP quando despertada. Seus ataques prendem o oponente sem chance de fuga.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <!-- BOKU NO HERO -->
+                    <div class="card" data-title="Boku no Hero">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format&fit=crop&q=80" alt="Boku no Hero">
+                        <h3>Boku no Hero</h3>
+                        <p>A jornada dos heróis em treinamento para salvar a sociedade do mal.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">❤️ <span class="like-count">0</span></button></div>
                         <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
                     </div>
 
-                    <div class="card" data-title="Buddha Fruit">
-                        <img src="https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=400&auto=format&fit=crop&q=80" alt="Buddha">
-                        <span class="rarity legendary">Lendária</span>
-                        <h3>Buddha Fruit</h3>
-                        <p>A melhor fruta absoluta para farmar e solar Raids. O aumento de alcance te torna gigante.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <!-- GACHIAKUTA -->
+                    <div class="card" data-title="Gachiakuta">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&auto=format&fit=crop&q=80" alt="Gachiakuta">
+                        <h3>Gachiakuta</h3>
+                        <p>A espetacular e rebelde história de vingança diretamente das profundezas do Abismo.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">❤️ <span class="like-count">0</span></button></div>
                         <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
                     </div>
 
-                    <div class="card" data-title="Magma Fruit">
-                        <img src="https://images.unsplash.com/photo-1600456899121-68eda5705257?w=400&auto=format&fit=crop&q=80" alt="Magma">
-                        <span class="rarity rare">Rara</span>
-                        <h3>Magma Fruit</h3>
-                        <p>Dono do maior dano bruto por segundo (DPS) do jogo inteiro. Essencial para derrotar o Sea Beast.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <!-- SENSE LIFE -->
+                    <div class="card" data-title="Sense Life">
+                        <img src="https://images.unsplash.com/photo-1516339901601-2e1d62dc0c45?w=400&auto=format&fit=crop&q=80" alt="Sense Life">
+                        <h3>Sense Life</h3>
+                        <p>Mistérios e conexões marcantes em uma narrativa profunda de cotidiano e ação.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">❤️ <span class="like-count">0</span></button></div>
+                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
+                    </div>
+
+                    <!-- NOVO: CHAINSAW MAN -->
+                    <div class="card" data-title="Chainsaw Man">
+                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&auto=format&fit=crop&q=80" alt="Chainsaw Man">
+                        <h3>Chainsaw Man</h3>
+                        <p>Denji corta tudo em seu caminho trabalhando como um caçador de demônios público.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">❤️ <span class="like-count">0</span></button></div>
+                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
+                    </div>
+
+                    <!-- NOVO: DEMON SLAYER -->
+                    <div class="card" data-title="Demon Slayer">
+                        <img src="https://images.unsplash.com/photo-1627556592933-ffe99c1cd9eb?w=400&auto=format&fit=crop&q=80" alt="Demon Slayer">
+                        <h3>Demon Slayer</h3>
+                        <p>A incrível e emocionante saga de Tanjiro para curar a sua irmã Nezuko.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">❤️ <span class="like-count">0</span></button></div>
                         <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
                     </div>
 
                 </div>
             </section>
+
+            <!-- Paginação no fim do blog -->
+            <div class="pagination">
+                <button class="active" onclick="mudarPagina(1)">1</button>
+                <button onclick="mudarPagina(2)">2 (Ir assistir)</button>
+            </div>
         </div>
 
-        <div id="aba-codigos">
-            <h2>Códigos Promocionais Ativos</h2>
-            <p>Insira esses códigos dentro do jogo clicando no ícone do Twitter/X para resgatar bônus:</p>
-            
-            <table class="code-table">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Recompensa</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="code-badge">SUB2GAMERROBOT_EXP1</span></td>
-                        <td>30 Minutos de 2x XP</td>
-                        <td style="color: #238636; font-weight: bold;">Ativo</td>
-                    </tr>
-                    <tr>
-                        <td><span class="code-badge">KITT_RESET</span></td>
-                        <td>Reset de Estatísticas Grátis</td>
-                        <td style="color: #238636; font-weight: bold;">Ativo</td>
-                    </tr>
-                    <tr>
-                        <td><span class="code-badge">BIGNEWS</span></td>
-                        <td>Título in-game "Bignews"</td>
-                        <td style="color: #238636; font-weight: bold;">Ativo</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Showcase de Combate (Demonstração)</h2>
+        <!-- CONTEÚDO DA PÁGINA 2 (PLAYER DE VIDEO PERSONALIZADO) -->
+        <div id="aba-assistir">
+            <h2>Aba de Transmissão - Assistir Animes</h2>
             <div class="player-container">
-                <h3 id="video-title">Assistindo: Demonstração de Combo da Fruta Kitsune</h3>
+                <h3 id="video-current-title">Assistindo: Jujutsu Kaisen</h3>
+                
                 <div class="video-mock">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80" alt="Gameplay Background">
-                    <div class="play-button" onclick="alert('Iniciando transmissão segura da gameplay de testes...')">▶</div>
+                    <img id="video-bg" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop&q=80" alt="Player">
+                    <div class="play-button" onclick="alert('Carregando o reprodutor seguro do episódio...')">▶</div>
+                </div>
+
+                <p>Selecione o anime que deseja assistir abaixo:</p>
+                <div class="anime-selector">
+                    <div class="anime-thumb active" onclick="carregarVideo('Jujutsu Kaisen', 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop&q=80')">Jujutsu Kaisen</div>
+                    <div class="anime-thumb" onclick="carregarVideo('Boku no Hero', 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80')">Boku no Hero</div>
+                    <div class="anime-thumb" onclick="carregarVideo('Gachiakuta', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&auto=format&fit=crop&q=80')">Gachiakuta</div>
+                    <div class="anime-thumb" onclick="carregarVideo('Sense Life', 'https://images.unsplash.com/photo-1516339901601-2e1d62dc0c45?w=800&auto=format&fit=crop&q=80')">Sense Life</div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Blox Fruits Hub - Desenvolvido no VS Code por Vitor Hugo.</p>
+        <p>&copy; 2026 Meu Blog do Roblox - Feito por Vitor Hugo.</p>
     </footer>
 
     <script>
-        // Alternância de Abas (Página 1 e Página 2)
-        function mudarAba(aba) {
+        // Sistema de Troca de Páginas (Aba 1 e Aba 2)
+        function mudarPagina(numeroPagina) {
             const blog = document.getElementById('aba-blog');
-            const codigos = document.getElementById('aba-codigos');
-            const btnP1 = document.getElementById('nav-p1');
-            const btnP2 = document.getElementById('nav-p2');
+            const assistir = document.getElementById('aba-assistir');
+            const navP1 = document.getElementById('nav-p1');
+            const navP2 = document.getElementById('nav-p2');
 
-            if (aba === 1) {
+            if(numeroPagina === 1) {
                 blog.style.display = "block";
-                codigos.style.display = "none";
-                btnP1.classList.add('active');
-                btnP2.classList.remove('active');
+                assistir.style.display = "none";
+                navP1.classList.add('active');
+                navP2.classList.remove('active');
+                window.scrollTo(0,0);
             } else {
                 blog.style.display = "none";
-                codigos.style.display = "block";
-                btnP1.classList.remove('active');
-                btnP2.classList.add('active');
+                assistir.style.display = "block";
+                navP1.classList.remove('active');
+                navP2.classList.add('active');
+                window.scrollTo(0,0);
             }
-            window.scrollTo(0, 0);
         }
 
-        // Sistema de Curtidas (Estilo Fogo Gamer)
+        // Carregador do Player de Vídeo Dinâmico
+        function carregarVideo(nomeAnime, urlImagem) {
+            document.getElementById('video-current-title').innerText = "Assistindo: " + nomeAnime;
+            document.getElementById('video-bg').src = urlImagem;
+            
+            // Gerencia as classes ativas nos botões seletores
+            const botoes = document.querySelectorAll('.anime-thumb');
+            botoes.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Sistema de Curtidas
         function curtir(botao) {
             const contador = botao.querySelector('.like-count');
             let curtidas = parseInt(contador.innerText);
-            
             if (botao.classList.contains('liked')) {
                 botao.classList.remove('liked');
                 curtidas--;
@@ -513,27 +497,25 @@
             contador.innerText = curtidas;
         }
 
-        // Sistema Dinâmico de Comentários
+        // Sistema de Comentários
         function adicionarComentario(botao) {
             const input = botao.parentElement.querySelector('input');
             const texto = input.value.trim();
             if (texto === '') return;
 
             const lista = botao.closest('.card').querySelector('.comments-list');
-            const novoItem = document.createElement('div');
-            novoItem.classList.add('comment-item');
-            novoItem.innerText = texto;
-
-            lista.appendChild(novoItem);
+            const novo = document.createElement('div');
+            novo.classList.add('comment-item');
+            novo.innerText = texto;
+            lista.appendChild(novo);
             input.value = '';
             lista.scrollTop = lista.scrollHeight;
         }
 
-        // Sistema de Busca Avançado (Procura pelo título do card)
-        function filtrarGeral() {
+        // Sistema de Busca
+        function filtrarConteudo() {
             const termo = document.getElementById('searchBar').value.toLowerCase();
             const cards = document.querySelectorAll('.card');
-
             cards.forEach(card => {
                 const titulo = card.getAttribute('data-title').toLowerCase();
                 card.style.display = titulo.includes(termo) ? "flex" : "none";
