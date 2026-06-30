@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blox Fruits - Guia & Códigos</title>
+    
+    <style>
+        /* Configurações de Cores e Estilo Base */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117; /* Fundo escuro Gamer */
+            color: #c9d1d9; /* Texto claro */
+        }
+
+        /* Cabeçalho Gamer com Degradê Neon */
+        header {
+            background: linear-gradient(135deg, #161b22 0%, #0f141c 100%);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #ffaa00; /* Dourado Lendário */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        header .logo-container {
+            border-left: 5px solid #ff4400; /* Laranja Fruta do Fogo */
+            padding-left: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 32px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 68, 0, 0.5);
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        /* Menu de Navegação */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #ffaa00;
+            background-color: #21262d;
+        }
+
+        /* Caixa de Busca */
+        .search-container input {
+            padding: 10px 18px;
+            width: 250px;
+            border: 2px solid #30363d;
+            border-radius: 25px;
+            background-color: #0d1117;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #ffaa00;
+            width: 320px; 
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.4);
+        }
+
+        /* Container Principal */
+        main {
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Box de Destaque */
+        .welcome-box {
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            border-left: 6px solid #ffaa00;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .welcome-box h2 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .welcome-box .author {
+            color: #ffaa00;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            border-left: 5px solid #ff4400;
+            padding-left: 12px;
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        /* Grid dos Cards de Frutas e Dicas */
+        .grid-container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Cards do Blog */
+        .card {
+            background-color: #161b22;
+            border-radius: 12px;
+            padding: 15px;
+            width: 270px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid #30363d;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #ffaa00;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            margin: 5px 0;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #8b949e;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .rarity {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            width: fit-content;
+        }
+        .mythical { background-color: #a335ee; color: white; }
+        .legendary { background-color: #ff7f00; color: white; }
+        .rare { background-color: #0070dd; color: white; }
+
+        /* Curtidas e Comentários */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .btn-like {
+            background-color: #21262d;
+            color: white;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-like.liked {
+            background-color: #ff4400;
+            border-color: #ff4400;
+        }
+
+        .comments-section {
+            margin-top: 10px;
+            border-top: 1px solid #30363d;
+            padding-top: 10px;
+        }
+
+        .comments-list {
+            max-height: 70px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .comment-item {
+            background: #21262d;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        .comment-input-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .comment-input-container input {
+            flex: 1;
+            padding: 8px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            color: white;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .comment-input-container button {
+            background-color: #ff4400;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* PÁGINA 2: CÓDIGOS E REPRODUTOR */
+        #aba-codigos {
+            display: none;
+        }
+
+        .code-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #161b22;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid #30363d;
+        }
+
+        .code-table th, .code-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .code-table th {
+            background-color: #21262d;
+            color: #ffaa00;
+        }
+
+        .code-badge {
+            background-color: #238636;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        /* Simulador de Vídeo do Up de Fruta */
+        .player-container {
+            background-color: #161b22;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #30363d;
+        }
+
+        .video-mock {
+            width: 100%;
+            max-width: 750px;
+            height: 400px;
+            background-color: #000;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #ffaa00;
+            position: relative;
+        }
+
+        .video-mock img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .play-button {
+            font-size: 65px;
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.2s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            color: #ffaa00;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #161b22;
+            margin-top: 60px;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <h1>Blox Fruits - Hub</h1>
+            <p>Dicas de Frutas, Locais de Farm e Códigos Ativos</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Notícias & Frutas</a></li>
+                <li><a id="nav-p2" onclick="mudarAba(2)">Códigos & Showcase</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Procurar fruta ou post..." oninput="filtrarGeral()">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="aba-blog">
+            <div class="welcome-box">
+                <h2>Análise de Atualização & Meta</h2>
+                <p class="author">Por: Vitor Hugo de Almeida</p>
+                <p>Fala galera! Sejam bem-vindos ao Hub definitivo de Blox Fruits. Confira abaixo os tiers de frutas mais fortes para PvP e Raids e navegue até a aba de códigos para garantir seu 2x de XP!</p>
+            </div>
+
+            <section>
+                <h2>Frutas em Destaque no Meta</h2>
+                <div class="grid-container">
+                    
+                    <div class="card" data-title="Kitsune Fruit">
+                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&auto=format&fit=crop&q=80" alt="Kitsune">
+                        <span class="rarity mythical">Mítica</span>
+                        <h3>Kitsune Fruit</h3>
+                        <p>A fruta com maior velocidade de movimento e excelente controle de área do jogo atualmente.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
+                    </div>
+
+                    <div class="card" data-title="Dough Fruit">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&auto=format&fit=crop&q=80" alt="Dough">
+                        <span class="rarity mythical">Mítica</span>
+                        <h3>Dough Fruit</h3>
+                        <p>Imbatível para combos PvP quando despertada. Seus ataques prendem o oponente sem chance de fuga.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
+                    </div>
+
+                    <div class="card" data-title="Buddha Fruit">
+                        <img src="https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=400&auto=format&fit=crop&q=80" alt="Buddha">
+                        <span class="rarity legendary">Lendária</span>
+                        <h3>Buddha Fruit</h3>
+                        <p>A melhor fruta absoluta para farmar e solar Raids. O aumento de alcance te torna gigante.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
+                    </div>
+
+                    <div class="card" data-title="Magma Fruit">
+                        <img src="https://images.unsplash.com/photo-1600456899121-68eda5705257?w=400&auto=format&fit=crop&q=80" alt="Magma">
+                        <span class="rarity rare">Rara</span>
+                        <h3>Magma Fruit</h3>
+                        <p>Dono do maior dano bruto por segundo (DPS) do jogo inteiro. Essencial para derrotar o Sea Beast.</p>
+                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <div id="aba-codigos">
+            <h2>Códigos Promocionais Ativos</h2>
+            <p>Insira esses códigos dentro do jogo clicando no ícone do Twitter/X para resgatar bônus:</p>
+            
+            <table class="code-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Recompensa</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-badge">SUB2GAMERROBOT_EXP1</span></td>
+                        <td>30 Minutos de 2x XP</td>
+                        <td style="color: #238636; font-weight: bold;">Ativo</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge">KITT_RESET</span></td>
+                        <td>Reset de Estatísticas Grátis</td>
+                        <td style="color: #238636; font-weight: bold;">Ativo</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge">BIGNEWS</span></td>
+                        <td>Título in-game "Bignews"</td>
+                        <td style="color: #238636; font-weight: bold;">Ativo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Showcase de Combate (Demonstração)</h2>
+            <div class="player-container">
+                <h3 id="video-title">Assistindo: Demonstração de Combo da Fruta Kitsune</h3>
+                <div class="video-mock">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80" alt="Gameplay Background">
+                    <div class="play-button" onclick="alert('Iniciando transmissão segura da gameplay de testes...')">▶</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Blox Fruits Hub - Desenvolvido no VS Code por Vitor Hugo.</p>
+    </footer>
+
+    <script>
+        // Alternância de Abas (Página 1 e Página 2)
+        function mudarAba(aba) {
+            const blog = document.getElementById('aba-blog');
+            const codigos = document.getElementById('aba-codigos');
+            const btnP1 = document.getElementById('nav-p1');
+            const btnP2 = document.getElementById('nav-p2');
+
+            if (aba === 1) {
+                blog.style.display = "block";
+                codigos.style.display = "none";
+                btnP1.classList.add('active');
+                btnP2.classList.remove('active');
+            } else {
+                blog.style.display = "none";
+                codigos.style.display = "block";
+                btnP1.classList.remove('active');
+                btnP2.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // Sistema de Curtidas (Estilo Fogo Gamer)
+        function curtir(botao) {
+            const contador = botao.querySelector('.like-count');
+            let curtidas = parseInt(contador.innerText);
+            
+            if (botao.classList.contains('liked')) {
+                botao.classList.remove('liked');
+                curtidas--;
+            } else {
+                botao.classList.add('liked');
+                curtidas++;
+            }
+            contador.innerText = curtidas;
+        }
+
+        // Sistema Dinâmico de Comentários
+        function adicionarComentario(botao) {
+            const input = botao.parentElement.querySelector('input');
+            const texto = input.value.trim();
+            if (texto === '') return;
+
+            const lista = botao.closest('.card').querySelector('.comments-list');
+            const novoItem = document.createElement('div');
+            novoItem.classList.add('comment-item');
+            novoItem.innerText = texto;
+
+            lista.appendChild(novoItem);
+            input.value = '';
+            lista.scrollTop = lista.scrollHeight;
+        }
+
+        // Sistema de Busca Avançado (Procura pelo título do card)
+        function filtrarGeral() {
+            const termo = document.getElementById('searchBar').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const titulo = card.getAttribute('data-title').toLowerCase();
+                card.style.display = titulo.includes(termo) ? "flex" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
