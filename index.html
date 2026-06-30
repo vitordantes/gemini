@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blox Fruits - Guia & Códigos</title>
+    <title>Blox Fruits - Ultra Hub & Gerador de Combos</title>
     
     <style>
         /* Configurações de Cores e Estilo Base */
@@ -11,25 +11,25 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0d1117; /* Fundo escuro Gamer */
-            color: #c9d1d9; /* Texto claro */
+            background-color: #0d1117;
+            color: #c9d1d9;
         }
 
-        /* Cabeçalho Gamer com Degradê Neon */
+        /* Cabeçalho Gamer */
         header {
             background: linear-gradient(135deg, #161b22 0%, #0f141c 100%);
             padding: 25px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid #ffaa00; /* Dourado Lendário */
+            border-bottom: 4px solid #ffaa00;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             flex-wrap: wrap;
             gap: 20px;
         }
 
         header .logo-container {
-            border-left: 5px solid #ff4400; /* Laranja Fruta do Fogo */
+            border-left: 5px solid #ff4400;
             padding-left: 15px;
         }
 
@@ -37,7 +37,6 @@
             margin: 0;
             color: #ffffff;
             font-size: 32px;
-            letter-spacing: 1px;
             text-shadow: 0 0 10px rgba(255, 68, 0, 0.5);
         }
 
@@ -60,14 +59,14 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 25px;
+            gap: 15px;
         }
 
         nav ul li a {
             color: #ffffff;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             padding: 8px 16px;
@@ -79,10 +78,9 @@
             background-color: #21262d;
         }
 
-        /* Caixa de Busca */
         .search-container input {
             padding: 10px 18px;
-            width: 250px;
+            width: 220px;
             border: 2px solid #30363d;
             border-radius: 25px;
             background-color: #0d1117;
@@ -94,36 +92,14 @@
         .search-container input:focus {
             outline: none;
             border-color: #ffaa00;
-            width: 320px; 
+            width: 280px; 
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.4);
         }
 
-        /* Container Principal */
         main {
             padding: 30px 20px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        /* Box de Destaque */
-        .welcome-box {
-            background-color: #161b22;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 35px;
-            border-left: 6px solid #ffaa00;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .welcome-box h2 {
-            margin-top: 0;
-            color: #ffffff;
-        }
-
-        .welcome-box .author {
-            color: #ffaa00;
-            font-style: italic;
-            font-size: 14px;
         }
 
         section {
@@ -134,28 +110,27 @@
             border-left: 5px solid #ff4400;
             padding-left: 12px;
             color: #ffffff;
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 25px;
         }
 
-        /* Grid dos Cards de Frutas e Dicas */
+        /* Grid das Frutas */
         .grid-container {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
-        /* Cards do Blog */
         .card {
             background-color: #161b22;
             border-radius: 12px;
             padding: 15px;
-            width: 270px;
+            width: 260px;
             box-shadow: 0 6px 16px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             border: 1px solid #30363d;
             transition: transform 0.3s ease;
         }
@@ -167,7 +142,7 @@
 
         .card img {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             border-radius: 8px;
         }
@@ -175,18 +150,21 @@
         .card h3 {
             margin: 5px 0;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .card p {
             color: #8b949e;
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1.4;
             margin: 0;
+            height: 55px;
+            overflow: hidden;
         }
 
+        /* Selos de Raridade */
         .rarity {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
             padding: 4px 8px;
@@ -196,167 +174,178 @@
         .mythical { background-color: #a335ee; color: white; }
         .legendary { background-color: #ff7f00; color: white; }
         .rare { background-color: #0070dd; color: white; }
+        .uncommon { background-color: #1ed760; color: black; }
 
         /* Curtidas e Comentários */
         .actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 5px;
         }
 
         .btn-like {
             background-color: #21262d;
             color: white;
             border: 1px solid #30363d;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s;
         }
 
-        .btn-like.liked {
-            background-color: #ff4400;
-            border-color: #ff4400;
-        }
+        .btn-like.liked { background-color: #ff4400; border-color: #ff4400; }
 
         .comments-section {
-            margin-top: 10px;
             border-top: 1px solid #30363d;
-            padding-top: 10px;
+            padding-top: 8px;
+            font-size: 12px;
         }
 
         .comments-list {
-            max-height: 70px;
+            max-height: 50px;
             overflow-y: auto;
-            margin-bottom: 10px;
-            font-size: 13px;
-            color: #c9d1d9;
+            margin-bottom: 5px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
 
-        .comment-item {
-            background: #21262d;
-            padding: 6px 10px;
-            border-radius: 6px;
-        }
+        .comment-item { background: #21262d; padding: 4px 8px; border-radius: 4px; }
 
-        .comment-input-container {
-            display: flex;
-            gap: 8px;
-        }
+        .comment-input-container { display: flex; gap: 5px; }
 
         .comment-input-container input {
-            flex: 1;
-            padding: 8px;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            color: white;
-            border-radius: 6px;
-            font-size: 13px;
+            flex: 1; padding: 6px; background-color: #0d1117;
+            border: 1px solid #30363d; color: white; border-radius: 4px; font-size: 12px;
         }
 
         .comment-input-container button {
-            background-color: #ff4400;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
+            background-color: #ff4400; color: white; border: none;
+            padding: 6px 10px; border-radius: 4px; cursor: pointer;
         }
 
-        /* PÁGINA 2: CÓDIGOS E REPRODUTOR */
-        #aba-codigos {
+        /* ABA DO MOTOR DE COMBOS (ESTILO IA) */
+        #aba-gerador {
             display: none;
         }
 
-        .code-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #161b22;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            border: 1px solid #30363d;
-        }
-
-        .code-table th, .code-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .code-table th {
-            background-color: #21262d;
-            color: #ffaa00;
-        }
-
-        .code-badge {
-            background-color: #238636;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 14px;
-        }
-
-        /* Simulador de Vídeo do Up de Fruta */
-        .player-container {
+        .generator-container {
             background-color: #161b22;
             border-radius: 12px;
             padding: 30px;
-            text-align: center;
             border: 1px solid #30363d;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
 
-        .video-mock {
-            width: 100%;
-            max-width: 750px;
-            height: 400px;
-            background-color: #000;
-            margin: 0 auto 20px auto;
-            border-radius: 8px;
+        .control-panel {
             display: flex;
-            justify-content: center;
+            gap: 20px;
             align-items: center;
-            border: 2px solid #ffaa00;
-            position: relative;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
-        .video-mock img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
-        .play-button {
-            font-size: 65px;
-            color: #ffffff;
+        .control-panel select {
+            padding: 12px 20px;
+            background-color: #0d1117;
+            color: white;
+            border: 2px solid #30363d;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
-            z-index: 2;
-            transition: transform 0.2s;
+            outline: none;
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
+        .control-panel select:focus {
+            border-color: #ffaa00;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #ff4400 0%, #ffaa00 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 68, 0, 0.4);
+        }
+
+        .btn-generate:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(255, 170, 0, 0.6);
+        }
+
+        /* Painel Exibidor do Combo Gerado */
+        .combo-display {
+            background-color: #0d1117;
+            border-radius: 10px;
+            padding: 25px;
+            border: 2px dashed #30363d;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .combo-header {
             color: #ffaa00;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        /* Rodapé */
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .combo-item-box {
+            background-color: #161b22;
+            padding: 15px;
+            border-radius: 8px;
+            border-top: 4px solid #ff4400;
+        }
+
+        .combo-item-box span {
+            font-size: 12px;
+            color: #8b949e;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .combo-item-box strong {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .strategy-box {
+            background-color: rgba(255, 170, 0, 0.1);
+            border-left: 4px solid #ffaa00;
+            padding: 15px;
+            border-radius: 4px;
+            color: #e1e7ed;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
         footer {
             text-align: center;
             padding: 25px;
             background-color: #161b22;
             margin-top: 60px;
-            border-top: 1px solid #30363d;
             color: #8b949e;
-            font-size: 14px;
         }
     </style>
 </head>
@@ -364,145 +353,229 @@
 
     <header>
         <div class="logo-container">
-            <h1>Blox Fruits - Hub</h1>
-            <p>Dicas de Frutas, Locais de Farm e Códigos Ativos</p>
+            <h1>Blox Fruits - Hub Pro</h1>
+            <p>Enciclopédia de Frutas & Criador Inteligente de Builds</p>
         </div>
         <nav>
             <ul>
-                <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Notícias & Frutas</a></li>
-                <li><a id="nav-p2" onclick="mudarAba(2)">Códigos & Showcase</a></li>
+                <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Lista de Frutas</a></li>
+                <li><a id="nav-p2" onclick="mudarAba(2)">🔮 Criar Combo (IA)</a></li>
             </ul>
             <div class="search-container">
-                <input type="text" id="searchBar" placeholder="Procurar fruta ou post..." oninput="filtrarGeral()">
+                <input type="text" id="searchBar" placeholder="Pesquisar frutas..." oninput="filtrarFrutas()">
             </div>
         </nav>
     </header>
 
     <main>
-        <div id="aba-blog">
-            <div class="welcome-box">
-                <h2>Análise de Atualização & Meta</h2>
-                <p class="author">Por: Vitor Hugo de Almeida</p>
-                <p>Fala galera! Sejam bem-vindos ao Hub definitivo de Blox Fruits. Confira abaixo os tiers de frutas mais fortes para PvP e Raids e navegue até a aba de códigos para garantir seu 2x de XP!</p>
-            </div>
-
-            <section>
-                <h2>Frutas em Destaque no Meta</h2>
-                <div class="grid-container">
-                    
-                    <div class="card" data-title="Kitsune Fruit">
-                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&auto=format&fit=crop&q=80" alt="Kitsune">
-                        <span class="rarity mythical">Mítica</span>
-                        <h3>Kitsune Fruit</h3>
-                        <p>A fruta com maior velocidade de movimento e excelente controle de área do jogo atualmente.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
-                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
-                    </div>
-
-                    <div class="card" data-title="Dough Fruit">
-                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&auto=format&fit=crop&q=80" alt="Dough">
-                        <span class="rarity mythical">Mítica</span>
-                        <h3>Dough Fruit</h3>
-                        <p>Imbatível para combos PvP quando despertada. Seus ataques prendem o oponente sem chance de fuga.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
-                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
-                    </div>
-
-                    <div class="card" data-title="Buddha Fruit">
-                        <img src="https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=400&auto=format&fit=crop&q=80" alt="Buddha">
-                        <span class="rarity legendary">Lendária</span>
-                        <h3>Buddha Fruit</h3>
-                        <p>A melhor fruta absoluta para farmar e solar Raids. O aumento de alcance te torna gigante.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
-                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
-                    </div>
-
-                    <div class="card" data-title="Magma Fruit">
-                        <img src="https://images.unsplash.com/photo-1600456899121-68eda5705257?w=400&auto=format&fit=crop&q=80" alt="Magma">
-                        <span class="rarity rare">Rara</span>
-                        <h3>Magma Fruit</h3>
-                        <p>Dono do maior dano bruto por segundo (DPS) do jogo inteiro. Essencial para derrotar o Sea Beast.</p>
-                        <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
-                        <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">Enviar</button></div></div>
-                    </div>
-
+        <!-- ABA 1: MOSTRANDO TODAS AS FRUTAS DO META -->
+        <div id="aba-lista">
+            <h2>Todas as Frutas Principais</h2>
+            <div class="grid-container">
+                
+                <!-- KITSUNE -->
+                <div class="card" data-title="Kitsune">
+                    <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=300" alt="Kitsune">
+                    <span class="rarity mythical">Mítica</span>
+                    <h3>Kitsune Fruit</h3>
+                    <p>Velocidade extrema, transformações impressionantes e o maior controle territorial do PvP.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
                 </div>
-            </section>
+
+                <!-- LEOPARD -->
+                <div class="card" data-title="Leopard">
+                    <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300" alt="Leopard">
+                    <span class="rarity mythical">Mítica</span>
+                    <h3>Leopard Fruit</h3>
+                    <p>Ataques em alta velocidade baseados em agilidade pura. Excelente para quebrar defesas inimigas.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- DOUGH -->
+                <div class="card" data-title="Dough">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300" alt="Dough">
+                    <span class="rarity mythical">Mítica</span>
+                    <h3>Dough Fruit</h3>
+                    <p>Essencial para jogadores competitivos de PvP devido aos seus estunamentos em cadeia infinitos.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- DRAGON -->
+                <div class="card" data-title="Dragon">
+                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300" alt="Dragon">
+                    <span class="rarity mythical">Mítica</span>
+                    <h3>Dragon Fruit</h3>
+                    <p>Grande resistência bônus em forma dracônica com rajadas de fogo devastadoras de longa distância.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- BUDDHA -->
+                <div class="card" data-title="Buddha">
+                    <img src="https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=300" alt="Buddha">
+                    <span class="rarity legendary">Lendária</span>
+                    <h3>Buddha Fruit</h3>
+                    <p>Rei absoluto do farm. O alcance massivo dos cliques com espada facilita a subida de níveis.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- PORTAL -->
+                <div class="card" data-title="Portal">
+                    <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300" alt="Portal">
+                    <span class="rarity legendary">Lendária</span>
+                    <h3>Portal Fruit</h3>
+                    <p>Utilizada para mobilidade e táticas de emboscada rápida no mapa, transportando o jogador a qualquer lugar.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- MAGMA -->
+                <div class="card" data-title="Magma">
+                    <img src="https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300" alt="Magma">
+                    <span class="rarity rare">Rara</span>
+                    <h3>Magma Fruit</h3>
+                    <p>Capacidade de andar sobre as águas e causar o maior dano passivo em Monstros Marinhos.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- LIGHT -->
+                <div class="card" data-title="Light">
+                    <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300" alt="Light">
+                    <span class="rarity rare">Rara</span>
+                    <h3>Light Fruit</h3>
+                    <p>A fruta com o voo mais rápido do jogo para o primeiro e segundo oceano. Ótimos ataques em linha.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+                <!-- ICE -->
+                <div class="card" data-title="Ice">
+                    <img src="https://images.unsplash.com/photo-1517210122102-8f1335a143cc?w=300" alt="Ice">
+                    <span class="rarity uncommon">Incomum</span>
+                    <h3>Ice Fruit</h3>
+                    <p>Excelente custo-benefício para iniciantes congelarem chefes e andarem sobre o mar livremente.</p>
+                    <div class="actions"><button class="btn-like" onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                    <div class="comments-section"><div class="comments-list"></div><div class="comment-input-container"><input type="text" placeholder="Comente..."><button onclick="adicionarComentario(this)">+</button></div></div>
+                </div>
+
+            </div>
         </div>
 
-        <div id="aba-codigos">
-            <h2>Códigos Promocionais Ativos</h2>
-            <p>Insira esses códigos dentro do jogo clicando no ícone do Twitter/X para resgatar bônus:</p>
-            
-            <table class="code-table">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Recompensa</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="code-badge">SUB2GAMERROBOT_EXP1</span></td>
-                        <td>30 Minutos de 2x XP</td>
-                        <td style="color: #238636; font-weight: bold;">Ativo</td>
-                    </tr>
-                    <tr>
-                        <td><span class="code-badge">KITT_RESET</span></td>
-                        <td>Reset de Estatísticas Grátis</td>
-                        <td style="color: #238636; font-weight: bold;">Ativo</td>
-                    </tr>
-                    <tr>
-                        <td><span class="code-badge">BIGNEWS</span></td>
-                        <td>Título in-game "Bignews"</td>
-                        <td style="color: #238636; font-weight: bold;">Ativo</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- ABA 2: CONVERSOR E CRIADOR ALGORÍTMICO DE COMBOS -->
+        <div id="aba-gerador">
+            <h2>Gerador Inteligente de Combos & Builds</h2>
+            <div class="generator-container">
+                <p>Escolha o foco da estratégia abaixo. A nossa IA de simulação vai estruturar um combo competitivo mesclando todas as categorias de equipamentos:</p>
+                
+                <div class="control-panel">
+                    <select id="select-estilo">
+                        <option value="pvp">Modo: PvP Metagame Balanceado</option>
+                        <option value="oneshot">Modo: One-Shot Destrutivo (Avançado)</option>
+                        <option value="farm">Modo: Raid & Farm Veloz</option>
+                    </select>
+                    
+                    <button class="btn-generate" onclick="gerarComboAleatorio()">⚡ CRIAR COMBO ALEATÓRIO</button>
+                </div>
 
-            <h2>Showcase de Combate (Demonstração)</h2>
-            <div class="player-container">
-                <h3 id="video-title">Assistindo: Demonstração de Combo da Fruta Kitsune</h3>
-                <div class="video-mock">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80" alt="Gameplay Background">
-                    <div class="play-button" onclick="alert('Iniciando transmissão segura da gameplay de testes...')">▶</div>
+                <!-- Janela de Exibição do Resultado -->
+                <div class="combo-display" id="box-resultado">
+                    <div class="combo-header">
+                        <span id="res-tipo-build">BUILD GERADA</span>
+                        <span style="color: #8b949e; font-size: 14px;">Status: Sincronizado</span>
+                    </div>
+                    
+                    <div class="combo-grid">
+                        <div class="combo-item-box"><span>🍒 Fruta Base</span><strong id="res-fruta">-</strong></div>
+                        <div class="combo-item-box"><span>⚔️ Espada</span><strong id="res-espada">-</strong></div>
+                        <div class="combo-item-box"><span>🔫 Arma à Distância</span><strong id="res-arma">-</strong></div>
+                        <div class="combo-item-box"><span>👊 Estilo de Luta</span><strong id="res-estilo">-</strong></div>
+                        <div class="combo-item-box"><span>🧬 Raça</span><strong id="res-raca">-</strong></div>
+                        <div class="combo-item-box"><span>👑 Acessório</span><strong id="res-acessorio">-</strong></div>
+                    </div>
+
+                    <h3>Estratégia Recomendada:</h3>
+                    <div class="strategy-box" id="res-estrategia">
+                        Escolha uma opção e clique no botão para gerar uma análise tática.
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Blox Fruits Hub - Desenvolvido no VS Code por Vitor Hugo.</p>
+        <p>&copy; 2026 Blox Fruits Hub - Desenvolvido por Vitor Hugo no VS Code.</p>
     </footer>
 
     <script>
-        // Alternância de Abas (Página 1 e Página 2)
+        // Banco de Dados Expandido para o Gerador de Combos Aleatórios
+        const dadosArmamento = {
+            frutas: ["Kitsune", "Dough (Desperta)", "Leopard", "Portal", "Dragon", "Buddha", "Magma", "Venom", "Spirit", "Ice"],
+            espadas: ["Cursed Dual Katana", "Shark Anchor", "Dark Blade (V3)", "Tushita", "Shisui", "Yama", "Soul Cane", "Fox Lamp"],
+            armas: ["Soul Guitar", "Kabucha", "Serpente Bow", "Acidum Rifle"],
+            estilos: ["Godhuman", "Sanguine Art", "Electric Claw", "Dragon Talon", "Superhuman"],
+            racas: ["Mink V4 (Velocidade)", "Shark V4 (Tanque Marinho)", "Human V4 (Dano Puro)", "Angel V4 (Cura/Atordoamento)", "Cyborg V4"],
+            acessorios: ["Pale Scarf", "Dark Coat", "Swan Glasses", "Pilot Helmet", "Hunter Cape"]
+        };
+
+        const tutorEstrategias = {
+            pvp: "Inicie o combate usando a mobilidade da sua Fruta para confundir o adversário. Utilize a Arma para quebrar o Ken Haki inimigo a distância e puxe o Estilo de Luta para iniciar a sequência principal de golpes sem dar espaço para reação.",
+            oneshot: "Esse combo exige precisão milimétrica! Use o ataque de atordoamento da sua Espada principal, mude instantaneamente para a Soul Guitar usando a habilidade especial de área e finalize com o clique carregado da sua fruta mítica. O oponente vai a zero instantaneamente.",
+            farm: "Ative a transformação da sua fruta imediatamente para aumentar a sua defesa. Junte todos os NPCs do local correndo em círculos e desfira ataques consecutivos com o Estilo de Luta em conjunto com os buffs passivos da sua Raça ativa."
+        };
+
+        // Função Principal do Botão "Criar"
+        function gerarComboAleatorio() {
+            const modo = document.getElementById('select-estilo').value;
+            
+            // Função interna para pescar um elemento aleatório da lista
+            const puxar = (lista) => lista[Math.floor(Math.random() * lista.length)];
+
+            // Preenche os campos do HTML dinamicamente com dados randômicos
+            document.getElementById('res-fruta').innerText = puxar(dadosArmamento.frutas);
+            document.getElementById('res-espada').innerText = puxar(dadosArmamento.espadas);
+            document.getElementById('res-arma').innerText = puxar(dadosArmamento.armas);
+            document.getElementById('res-estilo').innerText = puxar(dadosArmamento.estilos);
+            document.getElementById('res-raca').innerText = puxar(dadosArmamento.racas);
+            document.getElementById('res-acessorio').innerText = puxar(dadosArmamento.acessorios);
+            
+            // Define o texto analítico adaptado ao modo selecionado
+            document.getElementById('res-tipo-build').innerText = "BUILD DE ALTÍSSIMO RENDIMENTO: " + modo.toUpperCase();
+            document.getElementById('res-estrategia').innerText = tutorEstrategias[modo];
+
+            // Torna o painel do resultado visível na tela
+            document.getElementById('box-resultado').style.display = "block";
+        }
+
+        // Alternância entre as duas abas do Blog
         function mudarAba(aba) {
-            const blog = document.getElementById('aba-blog');
-            const codigos = document.getElementById('aba-codigos');
+            const lista = document.getElementById('aba-lista');
+            const gerador = document.getElementById('aba-gerador');
             const btnP1 = document.getElementById('nav-p1');
             const btnP2 = document.getElementById('nav-p2');
 
             if (aba === 1) {
-                blog.style.display = "block";
-                codigos.style.display = "none";
+                lista.style.display = "block";
+                gerador.style.display = "none";
                 btnP1.classList.add('active');
                 btnP2.classList.remove('active');
             } else {
-                blog.style.display = "none";
-                codigos.style.display = "block";
+                lista.style.display = "none";
+                gerador.style.display = "block";
                 btnP1.classList.remove('active');
                 btnP2.classList.add('active');
             }
             window.scrollTo(0, 0);
         }
 
-        // Sistema de Curtidas (Estilo Fogo Gamer)
+        // Sistema de Curtidas
         function curtir(botao) {
             const contador = botao.querySelector('.like-count');
             let curtidas = parseInt(contador.innerText);
-            
             if (botao.classList.contains('liked')) {
                 botao.classList.remove('liked');
                 curtidas--;
@@ -513,27 +586,25 @@
             contador.innerText = curtidas;
         }
 
-        // Sistema Dinâmico de Comentários
+        // Sistema de Comentários
         function adicionarComentario(botao) {
             const input = botao.parentElement.querySelector('input');
             const texto = input.value.trim();
             if (texto === '') return;
 
             const lista = botao.closest('.card').querySelector('.comments-list');
-            const novoItem = document.createElement('div');
-            novoItem.classList.add('comment-item');
-            novoItem.innerText = texto;
-
-            lista.appendChild(novoItem);
+            const div = document.createElement('div');
+            div.classList.add('comment-item');
+            div.innerText = texto;
+            lista.appendChild(div);
             input.value = '';
             lista.scrollTop = lista.scrollHeight;
         }
 
-        // Sistema de Busca Avançado (Procura pelo título do card)
-        function filtrarGeral() {
+        // Filtro de Busca
+        function filtrarFrutas() {
             const termo = document.getElementById('searchBar').value.toLowerCase();
             const cards = document.querySelectorAll('.card');
-
             cards.forEach(card => {
                 const titulo = card.getAttribute('data-title').toLowerCase();
                 card.style.display = titulo.includes(termo) ? "flex" : "none";
