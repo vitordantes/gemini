@@ -168,7 +168,6 @@
         .legendary { background-color: #ff7f00; color: white; }
         .rare { background-color: #0070dd; color: white; }
         .uncommon { background-color: #1ed760; color: black; }
-        .common { background-color: #8b949e; color: black; }
 
         .actions button {
             background-color: #1c212c; color: white; border: 1px solid #21262d;
@@ -187,49 +186,29 @@
         }
 
         .selector-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
             margin-bottom: 30px;
         }
 
-        .selector-box div {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .selector-box label {
-            font-size: 13px;
-            color: #ffaa00;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
         .selector-box select {
-            padding: 12px 15px;
+            padding: 12px 20px;
             background-color: #0b0e14;
             color: white;
             border: 2px solid #21262d;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px;
             outline: none;
             cursor: pointer;
-            width: 100%;
         }
 
         .selector-box select:focus { border-color: #ffaa00; }
 
-        .button-wrapper {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-        }
-
         .btn-build {
             background: linear-gradient(135deg, #ff4400 0%, #ffaa00 100%);
-            color: white; border: none; padding: 14px 40px; border-radius: 8px;
+            color: white; border: none; padding: 14px 30px; border-radius: 8px;
             font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s;
             box-shadow: 0 4px 15px rgba(255, 68, 0, 0.4);
         }
@@ -259,7 +238,7 @@
 
         .build-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             margin-bottom: 25px;
         }
@@ -270,7 +249,7 @@
         }
 
         .build-item span { font-size: 11px; color: #8b949e; text-transform: uppercase; display: block; }
-        .build-item strong { font-size: 16px; color: #ffffff; display: block; margin-top: 5px; }
+        .build-item strong { font-size: 17px; color: #ffffff; display: block; margin-top: 5px; }
 
         .sequence-box {
             background-color: #1a1510; border: 1px solid #ffaa00;
@@ -297,7 +276,7 @@
     <header>
         <div class="logo-container">
             <h1>Blox Fruits - Pro PvP Hub</h1>
-            <p>Database Completo & Criador Absoluto de Combos PvP</p>
+            <p>16 Frutas Atualizadas & Algoritmo de Sinergia Automática de Combos</p>
         </div>
         <nav>
             <ul>
@@ -311,59 +290,67 @@
     </header>
 
     <main>
+        <!-- ABA 1: TODAS AS 16 FRUTAS DO META -->
         <div id="aba-lista">
             <h2>Frutas Catalogadas</h2>
-            <div class="grid-container" id="container-cards-frutas">
-                </div>
+            <div class="grid-container">
+                <!-- MITICAS -->
+                <div class="card" data-title="Kitsune"><img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=300"><span class="rarity mythical">Mítica</span><h3>Kitsune</h3><p>Velocidade passiva insana e transformações com chamas azuis de alto stun.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Leopard"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300"><span class="rarity mythical">Mítica</span><h3>Leopard</h3><p>Ataques rápidos em forma felina que quebram o instinto instantaneamente.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Dragon"><img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300"><span class="rarity mythical">Mítica</span><h3>Dragon</h3><p>Dano em área massivo e transformações com alta resistência a ataques.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Dough"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300"><span class="rarity mythical">Mítica</span><h3>Dough</h3><p>A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="T-Rex"><img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=300"><span class="rarity mythical">Mítica</span><h3>T-Rex</h3><p>Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Mammoth"><img src="https://images.unsplash.com/photo-1581260466152-d2c0303e54f5?w=300"><span class="rarity mythical">Mítica</span><h3>Mammoth</h3><p>Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Spirit"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"><span class="rarity mythical">Mítica</span><h3>Spirit</h3><p>Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Venom"><img src="https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=300"><span class="rarity mythical">Mítica</span><h3>Venom</h3><p>Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+
+                <!-- LENDARIAS -->
+                <div class="card" data-title="Buddha"><img src="https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=300"><span class="rarity legendary">Lendária</span><h3>Buddha</h3><p>Aumenta seu tamanho físico drasticamente, expandindo o alcance da sua espada.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Portal"><img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300"><span class="rarity legendary">Lendária</span><h3>Portal</h3><p>Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Rumble"><img src="https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?w=300"><span class="rarity legendary">Lendária</span><h3>Rumble</h3><p>Transforma o usuário em eletricidade pura, teleportando e paralisando em área.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Blizzard"><img src="https://images.unsplash.com/photo-1485594050903-8e8ee7b071a8?w=300"><span class="rarity legendary">Lendária</span><h3>Blizzard</h3><p>Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+
+                <!-- RARAS E INCOMUNS -->
+                <div class="card" data-title="Magma"><img src="https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300"><span class="rarity rare">Rara</span><h3>Magma</h3><p>O maior dano bruto do jogo. Derrete superfícies e cria poças de lava nocivas.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Light"><img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300"><span class="rarity rare">Rara</span><h3>Light</h3><p>Dispara rajadas de luz na velocidade do som e cria uma espada de fótons.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Ice"><img src="https://images.unsplash.com/photo-1517210122102-8f1335a143cc?w=300"><span class="rarity uncommon">Incomum</span><h3>Ice</h3><p>Congela o solo e os pés do adversário, abrindo espaço para combos manuais de espada.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+                <div class="card" data-title="Dark"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300"><span class="rarity uncommon">Incomum</span><h3>Dark</h3><p>Cria buracos negros gravitacionais que sugam o oponente e desativam skills.</p><div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div></div>
+            </div>
         </div>
 
+        <!-- ABA 2: MOTOR DE MONTAGEM AUTOMÁTICA DE COMBOS COMPATÍVEIS -->
         <div id="aba-gerador">
             <h2>Montador Inteligente de Combos PvP</h2>
             <div class="generator-container">
-                <p>Monte o seu setup completo combinando as engrenagens corretas do meta. O sistema adaptará dinamicamente os multiplicadores de sinergia e gerará a sequência de execução:</p>
+                <p>Selecione a fruta que você deseja dominar no PvP. O algoritmo analisará as características da fruta e montará a sincronização perfeita de Espada, Arma e Estilo de Luta, além da rotação exata de botões:</p>
                 
                 <div class="selector-box">
-                    <div>
-                        <label for="combo-fruit-select">🍒 Selecionar Fruta</label>
-                        <select id="combo-fruit-select"></select>
-                    </div>
-                    <div>
-                        <label for="combo-sword-select">⚔️ Selecionar Espada</label>
-                        <select id="combo-sword-select"></select>
-                    </div>
-                    <div>
-                        <label for="combo-gun-select">🔫 Selecionar Arma</label>
-                        <select id="combo-gun-select"></select>
-                    </div>
-                    <div>
-                        <label for="combo-style-select">👊 Estilo de Luta</label>
-                        <select id="combo-style-select"></select>
-                    </div>
-                    <div>
-                        <label for="combo-race-select">🧬 Selecionar Raça</label>
-                        <select id="combo-race-select"></select>
-                    </div>
-
-                    <div class="button-wrapper">
-                        <button class="btn-build" onclick="processarBuildPvP()">⚔️ GERAR ARSENAL E COMBINAÇÃO</button>
-                    </div>
+                    <select id="combo-fruit-select">
+                        <option value="Dough">Usar como Base: Dough (Desperta)</option>
+                        <option value="Kitsune">Usar como Base: Kitsune</option>
+                        <option value="Portal">Usar como Base: Portal</option>
+                        <option value="Rumble">Usar como Base: Rumble</option>
+                        <option value="Ice">Usar como Base: Ice</option>
+                    </select>
+                    <button class="btn-build" onclick="processarBuildPvP()">⚔️ GERAR ARSENAL E COMBINAÇÃO</button>
                 </div>
 
+                <!-- Painel da Build Montada -->
                 <div class="combo-panel" id="pvp-combo-result">
                     <div class="combo-title" id="out-titulo-modo">BUILD PVP SINCRONIZADA</div>
                     
                     <div class="build-grid">
                         <div class="build-item"><span>🍒 Fruta Escolhida</span><strong id="out-fruta">-</strong></div>
-                        <div class="build-item"><span>⚔️ Espada Ativa</span><strong id="out-espada">-</strong></div>
-                        <div class="build-item"><span>🔫 Arma Equipada</span><strong id="out-arma">-</strong></div>
-                        <div class="build-item"><span>👊 Estilo de Luta</span><strong id="out-estilo">-</strong></div>
-                        <div class="build-item"><span>🧬 Buff de Raça</span><strong id="out-raca">-</strong></div>
+                        <div class="build-item"><span>⚔️ Espada Sinergizada</span><strong id="out-espada">-</strong></div>
+                        <div class="build-item"><span>🔫 Arma Complementar</span><strong id="out-arma">-</strong></div>
+                        <div class="build-item"><span>👊 Estilo de Luta Adaptado</span><strong id="out-estilo">-</strong></div>
                     </div>
 
                     <div class="sequence-box">
-                        <div class="sequence-title">Sequência de Execução Calculada (One-Shot Combo):</div>
+                        <div class="sequence-title">Sequência de Execução de Teclas (One-Shot Combo):</div>
                         <div class="macro-buttons" id="out-macro-keys">
-                            </div>
+                            <!-- Inserido via JS -->
+                        </div>
                         <p id="out-explicacao" style="margin: 10px 0 0 0; font-size: 14px; line-height: 1.5; color: #e1e7ed;"></p>
                     </div>
                 </div>
@@ -376,15 +363,127 @@
     </footer>
 
     <script>
-        // BANCO DE DADOS COMPLETO E ATUALIZADO DO METAGAME
-        const listaFrutas = [
-            // Míticas
-            { nome: "Kitsune", raridade: "mythical", desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=300" },
-            { nome: "Leopard", raridade: "mythical", desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300" },
-            { nome: "Dragon", raridade: "mythical", desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300" },
-            { nome: "Dough (Desperta)", raridade: "mythical", desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300" },
-            { nome: "Dough (Não Desperta)", raridade: "mythical", desc: "Versão base da Dough. Ataques massivos de massa, mas com menos emendas de stun.", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300" },
-            { nome: "T-Rex", raridade: "mythical", desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=300" },
-            { nome: "Mammoth", raridade: "mythical", desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://images.unsplash.com/photo-1581260466152-d2c0303e54f5?w=300" },
-            { nome: "Spirit", raridade: "mythical", desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" },
-            { nome: "Venom", raridade: "mythical", desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://images.unsplash.com/photo-1527489377706-5bf9
+        // Inteligência de Sinergia por Fruta (Mapeamento real do meta de PvP)
+        const baseDeSinergias = {
+            Dough: {
+                espada: "Cursed Dual Katana",
+                arma: "Soul Guitar",
+                estilo: "Godhuman",
+                macro: ["Fruta X", "Guitarra Z", "Estilo C", "Espada X", "Espada Z", "Fruta V"],
+                descricao: "O lendário combo One-Shot da Dough. Use o 'Fruta X' para puxar e prender o oponente no ar. Use a 'Guitarra Z' para quebrar qualquer tentativa de Ken Haki. Emende o 'Estilo C' para dar o empurrão carregado e finalize mudando rápido para a Cursed Katana usando as duas skills consecutivas."
+            },
+            Kitsune: {
+                espada: "Fox Lamp",
+                arma: "Soul Guitar",
+                estilo: "Sanguine Art",
+                macro: ["Fruta C", "Espada Z", "Estilo C", "Estilo X", "Guitarra X"],
+                descricao: "Aproveite a velocidade passiva da Kitsune. Ative o 'Fruta C' para atordoar em corrida, mude para a Fox Lamp disparando o corte flamejante 'Espada Z', use o puxão do 'Sanguine Art C' para sugar a vida dele e termine com o raio de almas da guitarra."
+            },
+            Portal: {
+                espada: "Shark Anchor",
+                arma: "Soul Guitar",
+                estilo: "Godhuman",
+                macro: ["Fruta X", "Guitarra Z", "Espada Z", "Espada X", "Estilo Z"],
+                descricao: "Combo focado em emboscada invisível. Abra o portal dimensional com 'Fruta X' bem embaixo do pé do inimigo. Assim que ele cair na armadilha, quebre a esquiva com 'Guitarra Z', puxe-o de volta usando a corrente da Shark Anchor ('Espada Z') e esmague com o soco carregado do Godhuman."
+            },
+            Rumble: {
+                espada: "Dark Blade (V3)",
+                arma: "Kabucha",
+                estilo: "Electric Claw",
+                macro: ["Fruta X", "Arma X", "Espada Z", "Estilo C", "Estilo X"],
+                descricao: "Combo de alta paralisia por eletricidade. Solte o raio 'Fruta X' para travar o inimigo, use o empurrão rápido da Kabucha ('Arma X') para alinhar a mira, descarregue o corte dimensional da Dark Blade e termine com a velocidade de cliques do Electric Claw."
+            },
+            Ice: {
+                espada: "Tushita",
+                arma: "Acidum Rifle",
+                estilo: "Superhuman",
+                macro: ["Fruta V", "Arma Z", "Espada X", "Espada Z", "Estilo C"],
+                descricao: "Excelente build para caçar bounty sem errar. Congele o chão instantaneamente usando o 'Fruta V'. Com o alvo estátua, aplique a fumaça tóxica do Acidum Rifle para reduzir as defesas, avance com o dash cortante da Tushita ('Espada X') e solte as rajadas do Superhuman."
+            }
+        };
+
+        // Função do Motor PvP Automático
+        function processarBuildPvP() {
+            const frutaSelecionada = document.getElementById('combo-fruit-select').value;
+            const sinergia = baseDeSinergias[frutaSelecionada];
+
+            // Renderiza elementos de texto simples
+            document.getElementById('out-fruta').innerText = frutaSelecionada;
+            document.getElementById('out-espada').innerText = sinergia.espada;
+            document.getElementById('out-arma').innerText = sinergia.arma;
+            document.getElementById('out-estilo').innerText = sinergia.estilo;
+            document.getElementById('out-explicacao').innerText = sinergia.descricao;
+            document.getElementById('out-titulo-modo').innerText = `BUILD ANALISADA: META PVP ${frutaSelecionada.toUpperCase()}`;
+
+            // Renderiza as caixas visuais das teclas do macro
+            const containerTeclas = document.getElementById('out-macro-keys');
+            containerTeclas.innerHTML = ""; // Limpa anterior
+
+            sinergia.macro.forEach((tecla, index) => {
+                const badge = document.createElement('span');
+                badge.classList.add('macro-key');
+                badge.innerText = tecla;
+                containerTeclas.appendChild(badge);
+
+                // Adiciona uma seta indicativa entre as teclas se não for a última
+                if (index < sinergia.macro.length - 1) {
+                    const seta = document.createElement('span');
+                    seta.style.color = "#ffaa00";
+                    seta.style.fontWeight = "bold";
+                    seta.style.alignSelf = "center";
+                    seta.innerText = "➔";
+                    containerTeclas.appendChild(seta);
+                }
+            });
+
+            // Mostra o painel com animação
+            document.getElementById('pvp-combo-result').style.display = "block";
+        }
+
+        // Alternador de Abas do Sistema
+        function mudarAba(aba) {
+            const lista = document.getElementById('aba-lista');
+            const gerador = document.getElementById('aba-gerador');
+            const btnP1 = document.getElementById('nav-p1');
+            const btnP2 = document.getElementById('nav-p2');
+
+            if (aba === 1) {
+                lista.style.display = "grid";
+                gerador.style.display = "none";
+                btnP1.classList.add('active');
+                btnP2.classList.remove('active');
+            } else {
+                lista.style.display = "none";
+                gerador.style.display = "block";
+                btnP1.classList.remove('active');
+                btnP2.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // Curtidas
+        function curtir(botao) {
+            const contador = botao.querySelector('.like-count');
+            let curtidas = parseInt(contador.innerText);
+            if (botao.classList.contains('liked')) {
+                botao.classList.remove('liked');
+                curtidas--;
+            } else {
+                botao.classList.add('liked');
+                curtidas++;
+            }
+            contador.innerText = curtidas;
+        }
+
+        // Barra de pesquisa inteligente
+        function filtrarFrutas() {
+            const termo = document.getElementById('searchBar').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const titulo = card.getAttribute('data-title').toLowerCase();
+                card.style.display = titulo.includes(termo) ? "flex" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
