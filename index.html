@@ -126,13 +126,15 @@
             flex-direction: column;
             gap: 10px;
             border: 1px solid #21262d;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #ff4400;
-        }
+        /* Sistema de Glow baseado na raridade ao passar o mouse */
+        .card.glow-mythical:hover { border-color: #a335ee; box-shadow: 0 0 15px rgba(163, 53, 238, 0.4); transform: translateY(-5px); }
+        .card.glow-legendary:hover { border-color: #ff7f00; box-shadow: 0 0 15px rgba(255, 127, 0, 0.4); transform: translateY(-5px); }
+        .card.glow-rare:hover { border-color: #0070dd; box-shadow: 0 0 15px rgba(0, 112, 221, 0.4); transform: translateY(-5px); }
+        .card.glow-uncommon:hover { border-color: #1ed760; box-shadow: 0 0 15px rgba(30, 215, 96, 0.4); transform: translateY(-5px); }
+        .card.glow-common:hover { border-color: #8b949e; box-shadow: 0 0 15px rgba(139, 148, 158, 0.4); transform: translateY(-5px); }
 
         .card img {
             width: 100%;
@@ -142,6 +144,11 @@
             background-color: #161b22;
             padding: 10px;
             box-sizing: border-box;
+            transition: transform 0.3s;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
         }
 
         .card h3 {
@@ -172,6 +179,13 @@
         .rare { background-color: #0070dd; color: white; }
         .uncommon { background-color: #1ed760; color: black; }
         .common { background-color: #8b949e; color: black; }
+
+        .actions button {
+            background-color: #1c212c; color: white; border: 1px solid #21262d;
+            padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px;
+            transition: all 0.2s;
+        }
+        .actions button.liked { background-color: #ff4400; border-color: #ffaa00; }
 
         #aba-gerador, #aba-info { display: none; }
 
@@ -219,7 +233,7 @@
         .button-wrapper {
             grid-column: 1 / -1;
             display: flex;
-            justify-content: center;
+            justify(content): center;
             gap: 15px;
             margin-top: 15px;
             flex-wrap: wrap;
@@ -482,15 +496,11 @@
             { nome: "Quake", raridade: "legendary", multiplicador: 1.25, desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://api.creit.tech/api/v1/blox-fruits/images/quake" }
         ];
 
-        // SEÇÃO: TODAS AS ESPADAS DO JOGO
         const infoEspadas = [
-            // Míticas
             { nome: "Cursed Dual Katana", pesoDano: 800, desc: "União devastadora da Yama e Tushita. Velocidade e dano insanos.", comoPegar: "Maestria 350 na Yama e Tushita + Enigma dos Pergaminhos no Terceiro Mar." },
             { nome: "Dark Blade", pesoDano: 810, desc: "Mítica espada negra lendária com ondas de cortes gigantes de longo alcance.", comoPegar: "Adquirida por Gamepass ou trocas dentro do jogo." },
             { nome: "Triple Dark Blade", pesoDano: 850, desc: "A raríssima e poderosa variação tripla de administrador.", comoPegar: "Exclusiva de eventos especiais de administradores." },
             { nome: "True Triple Katana", pesoDano: 790, desc: "A fusão perfeita das espadas Wando, Shisui e Saddi.", comoPegar: "Consiga Maestria 300 na Wando, Shisui e Saddi e pague 2.000.000 ao NPC no Segundo Mar." },
-            
-            // Lendárias
             { nome: "Shark Anchor", pesoDano: 770, desc: "Espada pesada com âncora que arrasta inimigos no ar e quebra combos.", comoPegar: "Drop do chefe lendário Terrorshark portando o item Monster Magnet." },
             { nome: "Fox Lamp", pesoDano: 750, desc: "Dispara chamas e raios de fogo azul direto da ilha Kitsune.", comoPegar: "Troque almas de fogo azul na Ilha Kitsune durante a Lua Cheia (Sea 3)." },
             { nome: "Tushita", pesoDano: 740, desc: "Cortes sagrados ultrarrápidos excelentes para travar o inimigo.", comoPegar: "Derrote o chefe Longma após resolver o enigma das tochas secretas na Hydra." },
@@ -498,15 +508,13 @@
             { nome: "Shisui", pesoDano: 725, desc: "Gera cortes de vácuo roxo extremamente rápidos.", comoPegar: "Compre com o Legendary Sword Dealer no Segundo Mar por 2.000.000 de Berries." },
             { nome: "Wando", pesoDano: 720, desc: "Espada clássica de bainha branca com golpes retilíneos potentes.", comoPegar: "Compre com o Legendary Sword Dealer no Segundo Mar por 2.000.000 de Berries." },
             { nome: "Saddi", pesoDano: 720, desc: "Cortes em rotação contínua perfeitos para atingir inimigos no ar.", comoPegar: "Compre com o Legendary Sword Dealer no Segundo Mar por 2.000.000 de Berries." },
-            { nome: "Canvander", pesoDano: 710, desc: "Florete elegante que projeta estocadas floridas de alta mobilidade.", comoPegar: "Drop garantido ao derrotar o boss Beautiful Pirate no Terceiro Mar (Nível 1950+)." },
+            { nome: "Canvander", pesoDano: 710, desc: "Florete elegant que projeta estocadas floridas de alta mobilidade.", comoPegar: "Drop garantido ao derrotar o boss Beautiful Pirate no Terceiro Mar (Nível 1950+)." },
             { nome: "Spikey Trident", pesoDano: 715, desc: "Dispara um tridente elástico que puxa você até o alvo ou o alvo até você.", comoPegar: "Drop raro do boss Cake Prince ou Dough King no Terceiro Mar." },
             { nome: "Midnight Blade", pesoDano: 700, desc: "Lâmina sombria que projeta cortes de névoa escura em área.", comoPegar: "Compre por 100 Ectoplasmas com o NPC El Perro no Navio Assombrado (Sea 2)." },
             { nome: "Rengoku", pesoDano: 722, desc: "Deixa um rastro de fogo contínuo que queima a vida do oponente.", comoPegar: "Abra o baú oculto na sala secreta do Castelo de Gelo com a Hidden Key (Sea 2)." },
             { nome: "Saber", pesoDano: 735, desc: "A espada com maior dano bruto de clique do jogo inteiro.", comoPegar: "Complete o Puzzle do Shanks no Primeiro Mar e derrote o boss Saber Expert." },
             { nome: "Pole (V2)", pesoDano: 705, desc: "Gera relâmpagos de alto atordoamento (stun) e emendas perfeitas.", comoPegar: "Desperte todas as habilidades da Rumble e complete a Raid Pole secreta." },
             { nome: "Hallow Scythe", pesoDano: 730, desc: "Foice mística de chamas laranjas inflamáveis com puxada em área.", comoPegar: "Drop raro do chefe Soul Reaper no Castelo Assombrado (Sea 3)." },
-            
-            // Raras, Incomuns e Comuns
             { nome: "Buddy Sword", pesoDano: 680, desc: "Projeta explosões de fogo e rajadas retas de luz.", comoPegar: "Drop do chefe Big Mom (Cake Queen) no Terceiro Mar." },
             { nome: "Twin Hooks", pesoDano: 640, desc: "Gera cortes duplos que levantam o oponente no ar.", comoPegar: "Drop do chefe Captain Elephant na Ilha Tartaruga Flutuante (Sea 3)." },
             { nome: "Jitte", pesoDano: 620, desc: "Permite se teleportar diretamente para onde o projétil de fumaça estourar.", comoPegar: "Drop do chefe Smoke Admiral na fortaleza do Segundo Mar." },
@@ -523,7 +531,6 @@
             { nome: "Cutlass", pesoDano: 400, desc: "Sabre inicial de marinheiro básico.", comoPegar: "Compre na ilha inicial por 1.000 Berries." }
         ];
 
-        // SEÇÃO: TODAS AS ARMAS DO JOGO
         const infoArmas = [
             { nome: "Soul Guitar", pesoDano: 380, desc: "A soberana absoluta do PvP. Notas musicais de cura e raio de blackout total.", comoPegar: "Enigma de nível 2300+ no Castelo Assombrado usando ossos e fragmentos." },
             { nome: "Acidum Rifle", pesoDano: 340, desc: "Dispara rajadas de fumaça ácida contínua que estouram defesas e quebram Haki.", comoPegar: "Drop raro do evento de invasão de Fábrica no Segundo Mar." },
@@ -536,7 +543,6 @@
             { nome: "Cannon", pesoDano: 250, desc: "Lança balas explosivas lentas de alto impacto.", comoPegar: "Compre na Fortaleza da Marinha por 100.000 Berries." }
         ];
 
-        // SEÇÃO: TODOS OS ESTILOS DE LUTA DO JOGO
         const infoEstilos = [
             { nome: "Godhuman", pesoDano: 4300, desc: "O auge dos estilos de luta. Socos impulsionados com empurrões e rajadas multidirecionais.", comoPegar: "Maestria 400 em Superhuman, Death Step, Sharkman Karate, Electric Claw e Dragon Talon + Itens." },
             { nome: "Sanguine Art", pesoDano: 4400, desc: "Gera garras de sangue que roubam vida do alvo e o prendem no solo.", comoPegar: "Entregue o Leviathan Heart ao NPC Shafi no Terceiro Mar por 5.000 Fragmentos." },
@@ -572,7 +578,8 @@
             container.innerHTML = "";
             listaFrutas.forEach(fruta => {
                 const card = document.createElement('div');
-                card.classList.add('card');
+                // Aplica a classe geral e a classe de glow correspondente à raridade
+                card.classList.add('card', `glow-${fruta.raridade}`);
                 card.setAttribute('data-title', fruta.nome);
                 card.innerHTML = `
                     <img src="${fruta.img}" alt="${fruta.nome}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150';">
@@ -653,7 +660,6 @@
             document.getElementById('out-tipo-combo').innerText = isExtended ? "ONE-SHOT MAX (ESTENDIDO)" : "PADRÃO";
             document.getElementById('out-tipo-combo').style.background = isExtended ? "#b335ee" : "#ff4400";
 
-            // CÁLCULO DE DANO DINÂMICO DE ACORDO COM ITENS
             let danoBaseEstilo = estiloObj.pesoDano;
             let danoFruta = 5000 * frutaObj.multiplicador;
             let danoEspada = espadaObj.pesoDano * 6.2;
@@ -669,7 +675,6 @@
             if(pctBarra > 100) pctBarra = 100;
             document.getElementById('out-dano-bar').style.width = `${pctBarra}%`;
 
-            // ATRIBUIÇÃO DE PONTOS DINÂMICOS (STATS)
             document.getElementById('stat-defense').innerText = "2550";
             document.getElementById('stat-melee').innerText = "2550";
 
