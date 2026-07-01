@@ -136,10 +136,12 @@
 
         .card img {
             width: 100%;
-            height: 140px;
-            object-fit: cover;
+            height: 160px;
+            object-fit: contain; /* Ajustado para não cortar o desenho da fruta */
             border-radius: 8px;
             background-color: #0b0e14;
+            padding: 5px;
+            box-sizing: border-box;
         }
 
         .card h3 {
@@ -448,42 +450,37 @@
     </footer>
 
     <script>
-        // BANCO DE DADOS ATUALIZADO COM IMAGENS SIMBÓLICAS E TEMÁTICAS
+        // BANCO DE DADOS ATUALIZADO COM IMAGENS REAIS E OFICIAIS DO JOGO BLOX FRUITS
         const listaFrutas = [
-            { nome: "Kitsune", raridade: "mythical", desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80" }, // Raposa mística/fogo azul
-            { nome: "Leopard", raridade: "mythical", desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400&q=80" }, // Leopardo/Felino antigo
-            { nome: "Dragon", raridade: "mythical", desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" }, // Dragão cuspindo fogo
-            { nome: "Dough (Desperta)", raridade: "mythical", desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80" }, // Massa/Pão de forma abstrata
-            { nome: "Dough (Não Desperta)", raridade: "mythical", desc: "Versão base da Dough. Ataques massivos de massa, mas com menos emendas de stun.", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80" },
-            { nome: "T-Rex", raridade: "mythical", desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&q=80" }, // Dinossauro Feroz
-            { nome: "Mammoth", raridade: "mythical", desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80" }, // Elefante/Mamute força bruta
-            { nome: "Spirit", raridade: "mythical", desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" }, // Almas/Fantasmas brilhantes
-            { nome: "Venom", raridade: "mythical", desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=400&q=80" }, // Líquido venenoso verde/roxo
-            { nome: "Shadow", raridade: "mythical", desc: "Cria corvos sombrios e vampirismo para roubar a vida do oponente em área.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&q=80" }, // Escuridão e fumaça negra
-            { nome: "Gravity", raridade: "mythical", desc: "Derruba meteoros do céu e aumenta a gravidade local para prender dashes.", img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=400&q=80" }, // Espaço/Buraco negro
+            { nome: "Kitsune", raridade: "mythical", desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://static.wikia.nocookie.net/blox-fruits/images/e/e0/KitsunePhysical.png" },
+            { nome: "Leopard", raridade: "mythical", desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/14/Leopard_Fruit_Icon.png" },
+            { nome: "Dragon", raridade: "mythical", desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://static.wikia.nocookie.net/blox-fruits/images/e/e5/DragonPhysical.png" },
+            { nome: "Dough", raridade: "mythical", desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://static.wikia.nocookie.net/blox-fruits/images/e/e1/Dough_Fruit_Icon.png" },
+            { nome: "T-Rex", raridade: "mythical", desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/ac/T-RexPhysical.png" },
+            { nome: "Mammoth", raridade: "mythical", desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/19/MammothPhysical.png" },
+            { nome: "Spirit", raridade: "mythical", desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/a2/Spirit_Fruit_Icon.png" },
+            { nome: "Venom", raridade: "mythical", desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/16/Venom_Fruit_Icon.png" },
+            { nome: "Shadow", raridade: "mythical", desc: "Cria corvos sombrios e vampirismo para roubar a vida do oponente em área.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/af/Shadow_Fruit_Icon.png" },
+            { nome: "Gravity", raridade: "mythical", desc: "Derruba meteoros do céu e aumenta a gravidade local para prender dashes.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/1b/Gravity_Fruit_Icon.png" },
             
             // Lendárias
-            { nome: "Buddha (Desperta)", raridade: "legendary", desc: "Aumenta o tamanho drasticamente com hitbox gigante e redução drástica de dano.", img: "https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=400&q=80" }, // Estátua dourada/Iluminação
-            { nome: "Buddha (Não Desperta)", raridade: "legendary", desc: "Fica gigante e ganha alcance, mas não possui a onda de choque de repulsão.", img: "https://images.unsplash.com/photo-1590076215667-873d6f009a80?w=400&q=80" },
-            { nome: "Portal", raridade: "legendary", desc: "Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.", img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80" }, // Portal cósmico/Galáxia
-            { nome: "Rumble (Desperta)", raridade: "legendary", desc: "Teleportes elétricos instantâneos e raios de área com o maior stun do meta.", img: "https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?w=400&q=80" }, // Tempestade de Raios
-            { nome: "Rumble (Não Desperta)", raridade: "legendary", desc: "Ataques de raio comuns. Bom dano, mas os teletransportes são limitados.", img: "https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?w=400&q=80" },
-            { nome: "Blizzard", raridade: "legendary", desc: "Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.", img: "https://images.unsplash.com/photo-1485594050903-8e8ee7b071a8?w=400&q=80" }, // Nevasca severa
-            { nome: "Sound", raridade: "legendary", desc: "Gera barreiras musicais e buffs de velocidade para confundir inimigos.", img: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&q=80" }, // Ondas sonoras/Áudio
-            { nome: "Phoenix (Desperta)", raridade: "legendary", desc: "Cura constante em pleno voo e ataques de fogo azul regenerativo.", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&q=80" }, // Pássaro mítico luminoso
-            { nome: "Phoenix (Não Desperta)", raridade: "legendary", desc: "Cura básica estática. Fácil de ser cancelada por ataques inimigos.", img: "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?w=400&q=80" },
-            { nome: "Pain", raridade: "legendary", desc: "Dispara projéteis de pressão de ar ultrarápidos que drenam o Haki.", img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=80" }, // Impacto de garras/Abstrato vermelho
-            { nome: "Spider (Desperta)", raridade: "legendary", desc: "Prende os alvos em teias de fios afiados à longa distância.", img: "https://images.unsplash.com/photo-1528563351349-844bf049ef65?w=400&q=80" }, // Teia de aranha neon
-            { nome: "Spider (Não Desperta)", raridade: "legendary", desc: "Fios simples de curto alcance. Exige precisão cirúrgica no PvP.", img: "https://images.unsplash.com/photo-1485552437336-8d390a37de75?w=400&q=80" },
-            { nome: "Love", raridade: "legendary", desc: "Gera um flamingo voador e ataques de atordoamento por corações apaixonados.", img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&q=80" }, // Coração rosa
-            { nome: "Quake (Desperta)", raridade: "legendary", desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=400&q=80" }, // Vidro quebrando/Impacto terrestre
+            { nome: "Buddha", raridade: "legendary", desc: "Aumenta o tamanho drasticamente com hitbox gigante e redução drástica de dano.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/a1/Buddha_Fruit_Icon.png" },
+            { nome: "Portal", raridade: "legendary", desc: "Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.", img: "https://static.wikia.nocookie.net/blox-fruits/images/d/df/Portal_Fruit_Icon.png" },
+            { nome: "Rumble", raridade: "legendary", desc: "Teleportes elétricos instantâneos e raios de área com o maior stun do meta.", img: "https://static.wikia.nocookie.net/blox-fruits/images/b/b3/Rumble_Fruit_Icon.png" },
+            { nome: "Blizzard", raridade: "legendary", desc: "Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/10/Blizzard_Fruit_Icon.png" },
+            { nome: "Sound", raridade: "legendary", desc: "Gera barreiras musicais e buffs de velocidade para confundir inimigos.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/aa/SoundPhysical.png" },
+            { nome: "Phoenix", raridade: "legendary", desc: "Cura constante em preço de energia e ataques de fogo azul regenerativo.", img: "https://static.wikia.nocookie.net/blox-fruits/images/3/3d/Phoenix_Fruit_Icon.png" },
+            { nome: "Pain", raridade: "legendary", desc: "Dispara projéteis de pressão de ar ultrarápidos que drenam o Haki.", img: "https://static.wikia.nocookie.net/blox-fruits/images/4/41/PainPhysical.png" },
+            { nome: "Spider", raridade: "legendary", desc: "Prende os alvos em teias de fios afiados à longa distância.", img: "https://static.wikia.nocookie.net/blox-fruits/images/2/22/Spider_Fruit_Icon.png" },
+            { nome: "Love", raridade: "legendary", desc: "Gera um flamingo voador e ataques de atordoamento por corações apaixonados.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/a7/Love_Fruit_Icon.png" },
+            { nome: "Quake", raridade: "legendary", desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://static.wikia.nocookie.net/blox-fruits/images/b/b0/Quake_Fruit_Icon.png" },
             
-            // Raras e comuns de exemplo rápido
-            { nome: "Magma (Desperta)", raridade: "rare", desc: "O maior dano bruto do jogo. Derrete superfícies e permite andar na água.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=400&q=80" }, // Vulcão/Lava ativa
-            { nome: "Light (Desperta)", raridade: "rare", desc: "Dispara rajadas de luz na velocidade do som e possui o voo mais rápido.", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&q=80" }, // Feixes de luz brilhantes
-            { nome: "Ice (Desperta)", raridade: "uncommon", desc: "Congela o solo perfeitamente, garantindo setups de combos manuais sem erro.", img: "https://images.unsplash.com/photo-1517210122102-8f1335a143cc?w=400&q=80" }, // Cristais de gelo azul
-            { nome: "Dark (Desperta)", raridade: "uncommon", desc: "Cria buracos negros gravitacionais gigantes que sugam e paralisam.", img: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=400&q=80" }, // Eclipse/Nebulosa escura
-            { nome: "Rocket", raridade: "common", desc: "Fruta explosiva básica. Lança mísseis simples de baixo dano.", img: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=400&q=80" } // Foguete decolando
+            // Raras e comuns
+            { nome: "Magma", raridade: "rare", desc: "O maior dano bruto do jogo. Derrete superfícies e permite andar na água.", img: "https://static.wikia.nocookie.net/blox-fruits/images/8/88/Magma_Fruit_Icon.png" },
+            { nome: "Light", raridade: "rare", desc: "Dispara rajadas de luz na velocidade do som e possui o voo mais rápido.", img: "https://static.wikia.nocookie.net/blox-fruits/images/0/01/Light_Fruit_Icon.png" },
+            { nome: "Ice", raridade: "uncommon", desc: "Congela o solo perfeitamente, garantindo setups de combos manuais sem erro.", img: "https://static.wikia.nocookie.net/blox-fruits/images/d/d2/Ice_Fruit_Icon.png" },
+            { nome: "Dark", raridade: "uncommon", desc: "Cria buracos negros gravitacionais gigantes que sugam e paralisam.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/1a/Dark_Fruit_Icon.png" },
+            { nome: "Rocket", raridade: "common", desc: "Fruta explosiva básica. Lança mísseis simples de baixo dano.", img: "https://static.wikia.nocookie.net/blox-fruits/images/6/64/RocketPhysical.png" }
         ];
 
         // BANCO DE DADOS DETALHADO DO GUIA DE OBTENÇÃO
@@ -560,7 +557,6 @@
             });
         }
 
-        // RENDERIZAR ABA DE GUIA DE ITENS
         function renderizarGuiaItens() {
             povoarGuia('info-espadas-grid', infoEspadas);
             povoarGuia('info-armas-grid', infoArmas);
