@@ -233,7 +233,7 @@
         .button-wrapper {
             grid-column: 1 / -1;
             display: flex;
-            justify-content: center;
+            justify(content): center;
             gap: 15px;
             margin-top: 15px;
             flex-wrap: wrap;
@@ -473,28 +473,27 @@
     </footer>
 
     <script>
-        // URLs corrigidas utilizando repositórios de imagens estáveis e leves da comunidade
         const listaFrutas = [
-            { nome: "Kitsune", raridade: "mythical", multiplicador: 1.5, desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Kitsune.png" },
-            { nome: "Leopard", raridade: "mythical", multiplicador: 1.45, desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Leopard.png" },
-            { nome: "Dragon", raridade: "mythical", multiplicador: 1.48, desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Dragon.png" },
-            { nome: "Dough", raridade: "mythical", multiplicador: 1.4, desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Dough.png" },
-            { nome: "T-Rex", raridade: "mythical", multiplicador: 1.38, desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/T-Rex.png" },
-            { nome: "Mammoth", raridade: "mythical", multiplicador: 1.35, desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Mammoth.png" },
-            { nome: "Spirit", raridade: "mythical", multiplicador: 1.37, desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Spirit.png" },
-            { nome: "Venom", raridade: "mythical", multiplicador: 1.36, desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Venom.png" },
-            { nome: "Shadow", raridade: "mythical", multiplicador: 1.32, desc: "Cria corvos sombrios e vampirismo para roubar a vida do oponente em área.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Shadow.png" },
-            { nome: "Gravity", raridade: "mythical", multiplicador: 1.25, desc: "Derruba meteoros do céu e aumenta a gravidade local para prender dashes.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Gravity.png" },
-            { nome: "Buddha", raridade: "legendary", multiplicador: 1.1, desc: "Aumenta o tamanho drasticamente com hitbox gigante e redução drástica de dano.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Buddha.png" },
-            { nome: "Portal", raridade: "legendary", multiplicador: 1.15, desc: "Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Portal.png" },
-            { nome: "Rumble", raridade: "legendary", multiplicador: 1.28, desc: "Teleportes elétricos instantâneos e raios de área com o maior stun do meta.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Rumble.png" },
-            { nome: "Blizzard", raridade: "legendary", multiplicador: 1.26, desc: "Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Blizzard.png" },
-            { nome: "Sound", raridade: "legendary", multiplicador: 1.22, desc: "Gera barreiras musicais e buffs de velocidade para confundir inimigos.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Sound.png" },
-            { nome: "Phoenix", raridade: "legendary", multiplicador: 1.2, desc: "Cura constante em preço de energia e ataques de fogo azul regenerativo.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Phoenix.png" },
-            { nome: "Pain", raridade: "legendary", multiplicador: 1.18, desc: "Dispara projéteis de pressão de ar ultrarápidos que drenam o Haki.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Pain.png" },
-            { nome: "Spider", raridade: "legendary", multiplicador: 1.24, desc: "Prende os alvos em teias de fios afiados à longa distância.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Spider.png" },
-            { nome: "Love", raridade: "legendary", multiplicador: 1.16, desc: "Gera um flamingo voador e ataques de atordoamento por corações apaixonados.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Love.png" },
-            { nome: "Quake", raridade: "legendary", multiplicador: 1.25, desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://raw.githubusercontent.com/ArikBeis/blox-fruits-assets/main/fruits/Quake.png" }
+            { nome: "Kitsune", raridade: "mythical", multiplicador: 1.5, desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://api.creit.tech/api/v1/blox-fruits/images/kitsune" },
+            { nome: "Leopard", raridade: "mythical", multiplicador: 1.45, desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://api.creit.tech/api/v1/blox-fruits/images/leopard" },
+            { nome: "Dragon", raridade: "mythical", multiplicador: 1.48, desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://api.creit.tech/api/v1/blox-fruits/images/dragon" },
+            { nome: "Dough", raridade: "mythical", multiplicador: 1.4, desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://api.creit.tech/api/v1/blox-fruits/images/dough" },
+            { nome: "T-Rex", raridade: "mythical", multiplicador: 1.38, desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://api.creit.tech/api/v1/blox-fruits/images/trex" },
+            { nome: "Mammoth", raridade: "mythical", multiplicador: 1.35, desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://api.creit.tech/api/v1/blox-fruits/images/mammoth" },
+            { nome: "Spirit", raridade: "mythical", multiplicador: 1.37, desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://api.creit.tech/api/v1/blox-fruits/images/spirit" },
+            { nome: "Venom", raridade: "mythical", multiplicador: 1.36, desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://api.creit.tech/api/v1/blox-fruits/images/venom" },
+            { nome: "Shadow", raridade: "mythical", multiplicador: 1.32, desc: "Cria corvos sombrios e vampirismo para roubar a vida do oponente em área.", img: "https://api.creit.tech/api/v1/blox-fruits/images/shadow" },
+            { nome: "Gravity", raridade: "mythical", multiplicador: 1.25, desc: "Derruba meteoros do céu e aumenta a gravidade local para prender dashes.", img: "https://api.creit.tech/api/v1/blox-fruits/images/gravity" },
+            { nome: "Buddha", raridade: "legendary", multiplicador: 1.1, desc: "Aumenta o tamanho drasticamente com hitbox gigante e redução drástica de dano.", img: "https://api.creit.tech/api/v1/blox-fruits/images/buddha" },
+            { nome: "Portal", raridade: "legendary", multiplicador: 1.15, desc: "Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.", img: "https://api.creit.tech/api/v1/blox-fruits/images/portal" },
+            { nome: "Rumble", raridade: "legendary", multiplicador: 1.28, desc: "Teleportes elétricos instantâneos e raios de área com o maior stun do meta.", img: "https://api.creit.tech/api/v1/blox-fruits/images/rumble" },
+            { nome: "Blizzard", raridade: "legendary", multiplicador: 1.26, desc: "Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.", img: "https://api.creit.tech/api/v1/blox-fruits/images/blizzard" },
+            { nome: "Sound", raridade: "legendary", multiplicador: 1.22, desc: "Gera barreiras musicais e buffs de velocidade para confundir inimigos.", img: "https://api.creit.tech/api/v1/blox-fruits/images/sound" },
+            { nome: "Phoenix", raridade: "legendary", multiplicador: 1.2, desc: "Cura constante em preço de energia e ataques de fogo azul regenerativo.", img: "https://api.creit.tech/api/v1/blox-fruits/images/phoenix" },
+            { nome: "Pain", raridade: "legendary", multiplicador: 1.18, desc: "Dispara projéteis de pressão de ar ultrarápidos que drenam o Haki.", img: "https://api.creit.tech/api/v1/blox-fruits/images/pain" },
+            { nome: "Spider", raridade: "legendary", multiplicador: 1.24, desc: "Prende os alvos em teias de fios afiados à longa distância.", img: "https://api.creit.tech/api/v1/blox-fruits/images/spider" },
+            { nome: "Love", raridade: "legendary", multiplicador: 1.16, desc: "Gera um flamingo voador e ataques de atordoamento por corações apaixonados.", img: "https://api.creit.tech/api/v1/blox-fruits/images/love" },
+            { nome: "Quake", raridade: "legendary", multiplicador: 1.25, desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://api.creit.tech/api/v1/blox-fruits/images/quake" }
         ];
 
         const infoEspadas = [
@@ -509,7 +508,7 @@
             { nome: "Shisui", pesoDano: 725, desc: "Gera cortes de vácuo roxo extremamente rápidos.", comoPegar: "Compre com o Legendary Sword Dealer no Segundo Mar por 2.000.000 de Berries." },
             { nome: "Wando", pesoDano: 720, desc: "Espada clássica de bainha branca com golpes retilíneos potentes.", comoPegar: "Compre com o Legendary Sword Dealer no Segundo Mar por 2.000.000 de Berries." },
             { nome: "Saddi", pesoDano: 720, desc: "Cortes em rotação contínua perfeitos para atingir inimigos no ar.", comoPegar: "Compre com o Legendary Sword Dealer no Segundo Mar por 2.000.000 de Berries." },
-            { nome: "Canvander", pesoDano: 710, desc: "Florete elegante que projeta estocadas floridas de alta mobilidade.", comoPegar: "Drop garantido ao derrotar o boss Beautiful Pirate no Terceiro Mar (Nível 1950+)." },
+            { nome: "Canvander", pesoDano: 710, desc: "Florete elegant que projeta estocadas floridas de alta mobilidade.", comoPegar: "Drop garantido ao derrotar o boss Beautiful Pirate no Terceiro Mar (Nível 1950+)." },
             { nome: "Spikey Trident", pesoDano: 715, desc: "Dispara um tridente elástico que puxa você até o alvo ou o alvo até você.", comoPegar: "Drop raro do boss Cake Prince ou Dough King no Terceiro Mar." },
             { nome: "Midnight Blade", pesoDano: 700, desc: "Lâmina sombria que projeta cortes de névoa escura em área.", comoPegar: "Compre por 100 Ectoplasmas com o NPC El Perro no Navio Assombrado (Sea 2)." },
             { nome: "Rengoku", pesoDano: 722, desc: "Deixa um rastro de fogo contínuo que queima a vida do oponente.", comoPegar: "Abra o baú oculto na sala secreta do Castelo de Gelo com a Hidden Key (Sea 2)." },
@@ -527,5 +526,249 @@
             { nome: "Soul Cane", pesoDano: 610, desc: "Bengala com alma congelante de alto stun rápido.", comoPegar: "Compre no laboratório do Vulcão (Primeiro Mar) por 750.000 Berries." },
             { nome: "Bisento", pesoDano: 650, desc: "Gera ondas de choque esmagadoras de terremoto.", comoPegar: "Compre no Pátio de Skypiea por 1.200.000 Berries." },
             { nome: "Warden Sword", pesoDano: 510, desc: "Lâmina pesada de guarda penitenciário.", comoPegar: "Drop do chefe Chief Warden na Prisão do Primeiro Mar." },
-            { nome: "Iron Mace", pesoDano: 490, desc: "Clava pesada de ferro de curtíssimo alcance.", comoPegar: "Compre com o NPC
+            { nome: "Iron Mace", pesoDano: 490, desc: "Clava pesada de ferro de curtíssimo alcance.", comoPegar: "Compre com o NPC na Vila Pirata por 25.000 Berries." },
+            { nome: "Katana", pesoDano: 400, desc: "Espada inicial básica para novos piratas.", comoPegar: "Compre na ilha inicial por 1.000 Berries." },
+            { nome: "Cutlass", pesoDano: 400, desc: "Sabre inicial de marinheiro básico.", comoPegar: "Compre na ilha inicial por 1.000 Berries." }
+        ];
 
+        const infoArmas = [
+            { nome: "Soul Guitar", pesoDano: 380, desc: "A soberana absoluta do PvP. Notas musicais de cura e raio de blackout total.", comoPegar: "Enigma de nível 2300+ no Castelo Assombrado usando ossos e fragmentos." },
+            { nome: "Acidum Rifle", pesoDano: 340, desc: "Dispara rajadas de fumaça ácida contínua que estouram defesas e quebram Haki.", comoPegar: "Drop raro do evento de invasão de Fábrica no Segundo Mar." },
+            { nome: "Kabucha", pesoDano: 280, desc: "Estilingue lendário de alta velocidade que joga o rival longe com rajadas de fogo.", comoPegar: "Compre por 1.500 Fragmentos com o NPC Usoapp no Segundo Mar." },
+            { nome: "Bizarre Rifle", pesoDano: 310, desc: "Dispara tiros de fogo contínuos que deixam o alvo queimando.", comoPegar: "Compre com o NPC Mad Scientist no Segundo Mar por 25 Ectoplasmas." },
+            { nome: "Serpent Bow", pesoDano: 330, desc: "Arco místico que dispara flechas venenosas teleguiadas.", comoPegar: "Drop raro obtido ao derrotar o boss Island Empress na Hydra Island (Sea 3)." },
+            { nome: "Slingshot", pesoDano: 150, desc: "Estilingue de brinquedo inicial simples.", comoPegar: "Compre na Vila dos Piratas por 5.000 Berries." },
+            { nome: "Musket", pesoDano: 210, desc: "Rifle de disparo pesado e recarga muito lenta.", comoPegar: "Compre no Primeiro Mar por 50.000 Berries." },
+            { nome: "Flintlock", pesoDano: 190, desc: "Pistola dupla de disparo básico de curto alcance.", comoPegar: "Compre na Vila dos Piratas por 10.000 Berries." },
+            { nome: "Cannon", pesoDano: 250, desc: "Lança balas explosivas lentas de alto impacto.", comoPegar: "Compre na Fortaleza da Marinha por 100.000 Berries." }
+        ];
+
+        const infoEstilos = [
+            { nome: "Godhuman", pesoDano: 4300, desc: "O auge dos estilos de luta. Socos impulsionados com empurrões e rajadas multidirecionais.", comoPegar: "Maestria 400 em Superhuman, Death Step, Sharkman Karate, Electric Claw e Dragon Talon + Itens." },
+            { nome: "Sanguine Art", pesoDano: 4400, desc: "Gera garras de sangue que roubam vida do alvo e o prendem no solo.", comoPegar: "Entregue o Leviathan Heart ao NPC Shafi no Terceiro Mar por 5.000 Fragmentos." },
+            { nome: "Electric Claw", pesoDano: 4100, desc: "Garras elétricas focadas em dashes ultrarrápidos e emendas de combos sem lag.", comoPegar: "Fale com o NPC Preveteer na Ilha Tartaruga com Maestria 400 de Elétrico e corra até a Mansão em 30s." },
+            { nome: "Sharkman Karate", pesoDano: 4000, desc: "Socos e golpes de água fluidos com a maior hitbox do jogo, ignorando esquivas curtas.", comoPegar: "Maestria 400 em Water Kung Fu + Water Key derrotando o Tide Keeper no Segundo Mar." },
+            { nome: "Dragon Talon", pesoDano: 4200, desc: "Gera explosões massivas de chamas de dragão com altíssimo dano bruto.", comoPegar: "Maestria 400 em Dragon Breath + Fire Essence obtida com ossos no Castelo Assombrado." },
+            { nome: "Death Step", pesoDano: 3950, desc: "Pernas flamejantes negras de brasa que deixam o oponente queimando em chamas.", comoPegar: "Maestria 400 em Dark Step + Library Key derrotando o Awakened Ice Admiral." },
+            { nome: "Superhuman", pesoDano: 3800, desc: "Combinação clássica de combos de artes marciais velozes de concussão.", comoPegar: "Maestria 300 em Dark Step, Electric, Water Kung Fu e Dragon Breath + 3.000.000 de Berries." },
+            { nome: "Dragon Breath", pesoDano: 3400, desc: "Lança rajadas de vento dracônico através de sopros frontais.", comoPegar: "Compre com o NPC Sabi no Segundo Mar por 1.500 Fragmentos." },
+            { nome: "Water Kung Fu", pesoDano: 3300, desc: "Artes marciais de água básicas com cliques rápidos horizontais.", comoPegar: "Compre com o Water Kung Fu Teacher na Cidade Subaquática por 750.000 Berries." },
+            { nome: "Electric", pesoDano: 3200, desc: "Socos eletrizados simples que atordoam o inimigo temporariamente.", comoPegar: "Compre com o Mad Scientist em Skypiea por 500.000 Berries." },
+            { nome: "Dark Step", pesoDano: 3100, desc: "Estilo focado exclusivamente em chutes rápidos de solo.", comoPegar: "Compre com o Black Leg Teacher na Vila Pirata por 150.000 Berries." },
+            { nome: "Combat", pesoDano: 2000, desc: "O estilo de luta inicial básico de todo personagem.", comoPegar: "Estilo padrão de início do jogo." }
+        ];
+
+        const infoRacas = [
+            { nome: "Humano (V4)", mod: 1.15 },
+            { nome: "Cyborg (V4)", mod: 1.10 },
+            { nome: "Shark (V4)", mod: 1.00 },
+            { nome: "Mink (V4)", mod: 1.05 },
+            { nome: "Ghoul (V4)", mod: 1.12 },
+            { nome: "Angel (V4)", mod: 1.08 }
+        ];
+
+        window.onload = function() {
+            renderizarCardsFrutas();
+            popularSeletores();
+            renderizarGuiaItens();
+        };
+
+        function renderizarCardsFrutas() {
+            const container = document.getElementById('container-cards-frutas');
+            container.innerHTML = "";
+            listaFrutas.forEach(fruta => {
+                const card = document.createElement('div');
+                // Aplica a classe geral e a classe de glow correspondente à raridade
+                card.classList.add('card', `glow-${fruta.raridade}`);
+                card.setAttribute('data-title', fruta.nome);
+                card.innerHTML = `
+                    <img src="${fruta.img}" alt="${fruta.nome}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150';">
+                    <span class="rarity ${fruta.raridade}">${traduzirRaridade(fruta.raridade)}</span>
+                    <h3>${fruta.nome}</h3>
+                    <p>${fruta.desc}</p>
+                    <div class="actions">
+                        <button onclick="curtir(this)">🔥 <span class="like-count">0</span></button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function traduzirRaridade(raridade) {
+            const traducoes = { mythical: "Mítica", legendary: "Lendária", rare: "Rara", uncommon: "Incomum", common: "Comum" };
+            return traducoes[raridade] || "Comum";
+        }
+
+        function popularSeletores() {
+            povoarSelect('combo-fruit-select', listaFrutas.map(f => f.nome));
+            povoarSelect('combo-sword-select', infoEspadas.map(e => e.nome));
+            povoarSelect('combo-gun-select', infoArmas.map(a => a.nome));
+            povoarSelect('combo-style-select', infoEstilos.map(s => s.nome));
+            povoarSelect('combo-race-select', infoRacas.map(r => r.nome));
+        }
+
+        function povoarSelect(idElemento, arrayDados) {
+            const select = document.getElementById(idElemento);
+            select.innerHTML = "";
+            arrayDados.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item; opt.innerText = item;
+                select.appendChild(opt);
+            });
+        }
+
+        function renderizarGuiaItens() {
+            povoarGuia('info-espadas-grid', infoEspadas);
+            povoarGuia('info-armas-grid', infoArmas);
+            povoarGuia('info-estilos-grid', infoEstilos);
+        }
+
+        function povoarGuia(idContainer, dados) {
+            const container = document.getElementById(idContainer);
+            container.innerHTML = "";
+            dados.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('info-item');
+                div.innerHTML = `
+                    <h4>${item.nome}</h4>
+                    <p>${item.desc}</p>
+                    <div class="how-to-get"><strong>Como obter:</strong> ${item.comoPegar || 'Comprando/NPCS'}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function processarBuildPvP(isExtended = false) {
+            const frutaNome = document.getElementById('combo-fruit-select').value;
+            const espadaNome = document.getElementById('combo-sword-select').value;
+            const armaNome = document.getElementById('combo-gun-select').value;
+            const estiloNome = document.getElementById('combo-style-select').value;
+            const racaNome = document.getElementById('combo-race-select').value;
+
+            const frutaObj = listaFrutas.find(f => f.nome === frutaNome);
+            const espadaObj = infoEspadas.find(e => e.nome === espadaNome);
+            const armaObj = infoArmas.find(a => a.nome === armaNome);
+            const estiloObj = infoEstilos.find(s => s.nome === estiloNome);
+            const racaObj = infoRacas.find(r => r.nome === racaNome);
+
+            document.getElementById('out-fruta').innerText = frutaNome;
+            document.getElementById('out-espada').innerText = espadaNome;
+            document.getElementById('out-arma').innerText = armaNome;
+            document.getElementById('out-estilo').innerText = estiloNome;
+            document.getElementById('out-raca').innerText = racaNome;
+            
+            document.getElementById('out-tipo-combo').innerText = isExtended ? "ONE-SHOT MAX (ESTENDIDO)" : "PADRÃO";
+            document.getElementById('out-tipo-combo').style.background = isExtended ? "#b335ee" : "#ff4400";
+
+            let danoBaseEstilo = estiloObj.pesoDano;
+            let danoFruta = 5000 * frutaObj.multiplicador;
+            let danoEspada = espadaObj.pesoDano * 6.2;
+            let danoArma = armaObj.pesoDano * 4.5;
+            
+            let danoTotalSuperficial = danoBaseEstilo + danoFruta + danoEspada + danoArma;
+            if (isExtended) danoTotalSuperficial *= 1.55; 
+            danoTotalSuperficial = Math.floor(danoTotalSuperficial * racaObj.mod);
+
+            document.getElementById('out-dano-num').innerText = danoTotalSuperficial.toLocaleString() + " HP";
+            
+            let pctBarra = (danoTotalSuperficial / 26000) * 100;
+            if(pctBarra > 100) pctBarra = 100;
+            document.getElementById('out-dano-bar').style.width = `${pctBarra}%`;
+
+            document.getElementById('stat-defense').innerText = "2550";
+            document.getElementById('stat-melee').innerText = "2550";
+
+            if (frutaNome === "Portal" || frutaNome === "Buddha") {
+                document.getElementById('stat-sword').innerText = "2550";
+                document.getElementById('stat-fruit').innerText = "0";
+                document.getElementById('stat-gun').innerText = "0";
+            } else {
+                document.getElementById('stat-fruit').innerText = "2550";
+                document.getElementById('stat-sword').innerText = "0";
+                document.getElementById('stat-gun').innerText = "0";
+            }
+
+            let macroCalculado = [];
+            let explicacaoDinamica = "";
+
+            if (!isExtended) {
+                macroCalculado = ["Fruta X", "Arma Z", `${estiloNome} C`, `${espadaNome} X`, "Fruta C"];
+                explicacaoDinamica = `Rotação fluida para o meta. Abra caminho usando o controle da fruta, atordoe com a arma ${armaNome} e use o impacto devastador do estilo de luta ${estiloNome} finalizando com os cortes precisos da ${espadaNome}.`;
+            } else {
+                macroCalculado = ["Arma X", "Fruta V", "Fruta X", `${estiloNome} Z`, `${estiloNome} C`, `${estiloNome} X`, `${espadaNome} Z`, `${espadaNome} X`, "Fruta C"];
+                explicacaoDinamica = `BURST COMBO ESTENDIDO MAXIMIZADO: Esse combo descarrega virtualmente todo o seu arsenal ativo. Inicia com a quebra de Haki à distância pela ${armaNome}, prende em animação imobilizante usando o supremo da fruta e executa a rotação de triplo impacto do ${estiloNome} ligada aos dois ataques característicos da sua espada ${espadaNome}. Inescapável!`;
+            }
+
+            const containerTeclas = document.getElementById('out-macro-keys');
+            containerTeclas.innerHTML = ""; 
+
+            macroCalculado.forEach((tecla, index) => {
+                const badge = document.createElement('span');
+                badge.classList.add('macro-key');
+                badge.innerText = tecla;
+                containerTeclas.appendChild(badge);
+
+                if (index < macroCalculado.length - 1) {
+                    const seta = document.createElement('span');
+                    seta.style.color = "#ffaa00"; seta.style.fontWeight = "bold"; seta.innerText = "➔";
+                    containerTeclas.appendChild(seta);
+                }
+            });
+
+            document.getElementById('out-explicacao').innerText = explicacaoDinamica;
+            document.getElementById('pvp-combo-result').style.display = "block";
+        }
+
+        function gerarComboAleatorio() {
+            const frutaSorteada = listaFrutas[Math.floor(Math.random() * listaFrutas.length)].nome;
+            const espadaSorteada = infoEspadas[Math.floor(Math.random() * infoEspadas.length)].nome;
+            const armaSorteada = infoArmas[Math.floor(Math.random() * infoArmas.length)].nome;
+            const estiloSorteado = infoEstilos[Math.floor(Math.random() * infoEstilos.length)].nome;
+            const racaSorteada = infoRacas[Math.floor(Math.random() * infoRacas.length)].nome;
+
+            document.getElementById('combo-fruit-select').value = frutaSorteada;
+            document.getElementById('combo-sword-select').value = espadaSorteada;
+            document.getElementById('combo-gun-select').value = armaSorteada;
+            document.getElementById('combo-style-select').value = estiloSorteado;
+            document.getElementById('combo-race-select').value = racaSorteada;
+
+            processarBuildPvP(Math.random() > 0.5);
+        }
+
+        function mudarAba(aba) {
+            const lista = document.getElementById('aba-lista');
+            const gerador = document.getElementById('aba-gerador');
+            const info = document.getElementById('aba-info');
+            const btnP1 = document.getElementById('nav-p1');
+            const btnP2 = document.getElementById('nav-p2');
+            const btnP3 = document.getElementById('nav-p3');
+
+            lista.style.display = "none"; gerador.style.display = "none"; info.style.display = "none";
+            btnP1.classList.remove('active'); btnP2.classList.remove('active'); btnP3.classList.remove('active');
+
+            if (aba === 1) { lista.style.display = "grid"; btnP1.classList.add('active'); }
+            else if (aba === 2) { gerador.style.display = "block"; btnP2.classList.add('active'); }
+            else if (aba === 3) { info.style.display = "block"; btnP3.classList.add('active'); }
+            window.scrollTo(0, 0);
+        }
+
+        function curtir(botao) {
+            const span = botao.querySelector('.like-count');
+            if (botao.classList.contains('liked')) {
+                botao.classList.remove('liked'); span.innerText = parseInt(span.innerText) - 1;
+            } else {
+                botao.classList.add('liked'); span.innerText = parseInt(span.innerText) + 1;
+            }
+        }
+
+        function filtrarFrutas() {
+            const termo = document.getElementById('searchBar').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const titulo = card.getAttribute('data-title').toLowerCase();
+                card.style.display = titulo.includes(termo) ? "flex" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
