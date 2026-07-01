@@ -59,18 +59,19 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
 
         nav ul li a {
             color: #ffffff;
             text-decoration: none;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 5px;
+            white-space: nowrap;
         }
 
         nav ul li a:hover, nav ul li a.active {
@@ -80,7 +81,7 @@
 
         .search-container input {
             padding: 10px 18px;
-            width: 200px;
+            width: 180px;
             border: 2px solid #21262d;
             border-radius: 25px;
             background-color: #0b0e14;
@@ -92,7 +93,7 @@
         .search-container input:focus {
             outline: none;
             border-color: #ffaa00;
-            width: 260px;
+            width: 240px;
         }
 
         main {
@@ -138,6 +139,7 @@
             height: 140px;
             object-fit: cover;
             border-radius: 8px;
+            background-color: #0b0e14;
         }
 
         .card h3 {
@@ -177,9 +179,9 @@
         .actions button.liked { background-color: #ff4400; }
 
         /* ABA DO GERADOR DE COMBOS AUTOMÁTICOS */
-        #aba-gerador { display: none; }
+        #aba-gerador, #aba-info { display: none; }
 
-        .generator-container {
+        .generator-container, .info-container {
             background-color: #121620;
             border-radius: 12px;
             padding: 30px;
@@ -298,6 +300,45 @@
             box-shadow: 0 3px 0 #b32d00;
         }
 
+        /* ESTILOS DA ABA DE INFORMAÇÕES (GUIA DE ITENS) */
+        .info-section {
+            margin-bottom: 40px;
+        }
+        .info-section h3 {
+            color: #ffaa00;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 8px;
+            font-size: 20px;
+            margin-top: 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .info-item {
+            background-color: #0b0e14;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #21262d;
+        }
+        .info-item h4 {
+            margin: 0 0 5px 0;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        .info-item p {
+            margin: 0;
+            font-size: 13px;
+            color: #8b949e;
+            line-height: 1.5;
+        }
+        .info-item .how-to-get {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #1ed760;
+        }
+
         footer { text-align: center; padding: 30px; background-color: #121620; margin-top: 60px; color: #8b949e; }
     </style>
 </head>
@@ -312,6 +353,7 @@
             <ul>
                 <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Enciclopédia</a></li>
                 <li><a id="nav-p2" onclick="mudarAba(2)">⚔️ Montar Combo PvP</a></li>
+                <li><a id="nav-p3" onclick="mudarAba(3)">📖 Guia de Itens</a></li>
             </ul>
             <div class="search-container">
                 <input type="text" id="searchBar" placeholder="Filtrar frutas..." oninput="filtrarFrutas()">
@@ -322,8 +364,7 @@
     <main>
         <div id="aba-lista">
             <h2>Frutas Catalogadas</h2>
-            <div class="grid-container" id="container-cards-frutas">
-                </div>
+            <div class="grid-container" id="container-cards-frutas"></div>
         </div>
 
         <div id="aba-gerador">
@@ -372,11 +413,32 @@
 
                     <div class="sequence-box">
                         <div class="sequence-title">Sequência de Execução Calculada (One-Shot Combo):</div>
-                        <div class="macro-buttons" id="out-macro-keys">
-                            </div>
+                        <div class="macro-buttons" id="out-macro-keys"></div>
                         <p id="out-explicacao" style="margin: 10px 0 0 0; font-size: 14px; line-height: 1.5; color: #e1e7ed;"></p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="aba-info">
+            <h2>Guia de Obtenção do Metagame</h2>
+            <div class="info-container">
+                
+                <div class="info-section">
+                    <h3>⚔️ Espadas Lendárias e Míticas</h3>
+                    <div class="info-grid" id="info-espadas-grid"></div>
+                </div>
+
+                <div class="info-section">
+                    <h3>🔫 Armas de Longo Alcance</h3>
+                    <div class="info-grid" id="info-armas-grid"></div>
+                </div>
+
+                <div class="info-section">
+                    <h3>🧬 Evolução de Raças (V4)</h3>
+                    <div class="info-grid" id="info-racas-grid"></div>
+                </div>
+
             </div>
         </div>
     </main>
@@ -386,89 +448,70 @@
     </footer>
 
     <script>
-        // BANCO DE DADOS COMPLETO E ATUALIZADO DO METAGAME
+        // BANCO DE DADOS ATUALIZADO COM IMAGENS SIMBÓLICAS E TEMÁTICAS
         const listaFrutas = [
-            // Míticas
-            { nome: "Kitsune", raridade: "mythical", desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=300" },
-            { nome: "Leopard", raridade: "mythical", desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300" },
-            { nome: "Dragon", raridade: "mythical", desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300" },
-            { nome: "Dough (Desperta)", raridade: "mythical", desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300" },
-            { nome: "Dough (Não Desperta)", raridade: "mythical", desc: "Versão base da Dough. Ataques massivos de massa, mas com menos emendas de stun.", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300" },
-            { nome: "T-Rex", raridade: "mythical", desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=300" },
-            { nome: "Mammoth", raridade: "mythical", desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://images.unsplash.com/photo-1581260466152-d2c0303e54f5?w=300" },
-            { nome: "Spirit", raridade: "mythical", desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" },
-            { nome: "Venom", raridade: "mythical", desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=300" },
-            { nome: "Shadow", raridade: "mythical", desc: "Cria corvos sombrios e vampirismo para roubar a vida do oponente em área.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300" },
-            { nome: "Gravity", raridade: "mythical", desc: "Derruba meteoros do céu e aumenta a gravidade local para prender dashes.", img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300" },
+            { nome: "Kitsune", raridade: "mythical", desc: "Velocidade passiva insana e transformações com chamas azuis de alto stun.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80" }, // Raposa mística/fogo azul
+            { nome: "Leopard", raridade: "mythical", desc: "Ataques rápidos em forma felina que quebram o instinto instantaneamente.", img: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400&q=80" }, // Leopardo/Felino antigo
+            { nome: "Dragon", raridade: "mythical", desc: "Dano em área massivo e transformações com alta resistência a ataques.", img: "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" }, // Dragão cuspindo fogo
+            { nome: "Dough (Desperta)", raridade: "mythical", desc: "A rainha dos combos One-Shot. Prende os oponentes no ar sem chance de dash.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80" }, // Massa/Pão de forma abstrata
+            { nome: "Dough (Não Desperta)", raridade: "mythical", desc: "Versão base da Dough. Ataques massivos de massa, mas com menos emendas de stun.", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80" },
+            { nome: "T-Rex", raridade: "mythical", desc: "Causa dano por sangramento contínuo e possui rugidos que paralisam o alvo.", img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&q=80" }, // Dinossauro Feroz
+            { nome: "Mammoth", raridade: "mythical", desc: "Ataques de atropelamento contínuo perfeitos para esmagar builds de espada.", img: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80" }, // Elefante/Mamute força bruta
+            { nome: "Spirit", raridade: "mythical", desc: "Alterna entre almas de gelo e fogo para curar a si mesmo ou estunar o rival.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" }, // Almas/Fantasmas brilhantes
+            { nome: "Venom", raridade: "mythical", desc: "Solta nuvens venenosas tóxicas que drenam a vida do inimigo passivamente.", img: "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=400&q=80" }, // Líquido venenoso verde/roxo
+            { nome: "Shadow", raridade: "mythical", desc: "Cria corvos sombrios e vampirismo para roubar a vida do oponente em área.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&q=80" }, // Escuridão e fumaça negra
+            { nome: "Gravity", raridade: "mythical", desc: "Derruba meteoros do céu e aumenta a gravidade local para prender dashes.", img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=400&q=80" }, // Espaço/Buraco negro
             
             // Lendárias
-            { nome: "Buddha (Desperta)", raridade: "legendary", desc: "Aumenta o tamanho drasticamente com hitbox gigante e redução drástica de dano.", img: "https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=300" },
-            { nome: "Buddha (Não Desperta)", raridade: "legendary", desc: "Fica gigante e ganha alcance, mas não possui a onda de choque de repulsão.", img: "https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=300" },
-            { nome: "Portal", raridade: "legendary", desc: "Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.", img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300" },
-            { nome: "Rumble (Desperta)", raridade: "legendary", desc: "Teleportes elétricos instantâneos e raios de área com o maior stun do meta.", img: "https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?w=300" },
-            { nome: "Rumble (Não Desperta)", raridade: "legendary", desc: "Ataques de raio comuns. Bom dano, mas os teletransportes são limitados.", img: "https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?w=300" },
-            { nome: "Blizzard", raridade: "legendary", desc: "Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.", img: "https://images.unsplash.com/photo-1485594050903-8e8ee7b071a8?w=300" },
-            { nome: "Sound", raridade: "legendary", desc: "Gera barreiras musicais e buffs de velocidade para confundir inimigos.", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300" },
-            { nome: "Phoenix (Desperta)", raridade: "legendary", desc: "Cura constante em pleno voo e ataques de fogo azul regenerativo.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300" },
-            { nome: "Phoenix (Não Desperta)", raridade: "legendary", desc: "Cura básica estática. Fácil de ser cancelada por ataques inimigos.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300" },
-            { nome: "Pain", raridade: "legendary", desc: "Dispara projéteis de pressão de ar ultrarápidos que drenam o Haki.", img: "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=300" },
-            { nome: "Spider (Desperta)", raridade: "legendary", desc: "Prende os alvos em teias de fios afiados à longa distância.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300" },
-            { nome: "Spider (Não Desperta)", raridade: "legendary", desc: "Fios simples de curto alcance. Exige precisão cirúrgica no PvP.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300" },
-            { nome: "Love", raridade: "legendary", desc: "Gera um flamingo voador e ataques de atordoamento por corações apaixonados.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" },
-            { nome: "Quake (Desperta)", raridade: "legendary", desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300" },
-            { nome: "Quake (Não Desperta)", raridade: "legendary", desc: "Ondas de choque terrestres simples com knockback muito alto.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300" },
-
-            // Raras
-            { nome: "Magma (Desperta)", raridade: "rare", desc: "O maior dano bruto do jogo. Derrete superfícies e permite andar na água.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300" },
-            { nome: "Magma (Não Desperta)", raridade: "rare", desc: "Lança bolas de lava lentas que deixam poças pequenas de queimação.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300" },
-            { nome: "Light (Desperta)", raridade: "rare", desc: "Dispara rajadas de luz na velocidade do som e possui o voo mais rápido.", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300" },
-            { nome: "Light (Não Desperta)", raridade: "rare", desc: "Ataques de luz retilíneos fáceis de desviar por meio de instinto.", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300" },
-            { nome: "Ghost", raridade: "rare", desc: "Possui uma mecânica de ressurreição passiva e invoca clones fantasmagóricos.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" },
-            { nome: "Barrier", raridade: "rare", desc: "Cria paredes físicas indestrutíveis para bloquear habilidades de longo alcance.", img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300" },
-            { nome: "Rubber", raridade: "rare", desc: "Imunidade total a ataques de eletricidade/raio e golpes elásticos rápidos.", img: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=300" },
-            { nome: "Diamond", raridade: "rare", desc: "Aumenta as defesas físicas cobrindo o corpo com uma camada brilhante.", img: "https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=300" },
-
-            // Incomuns e Comuns
-            { nome: "Ice (Desperta)", raridade: "uncommon", desc: "Congela o solo perfeitamente, garantindo setups de combos manuais sem erro.", img: "https://images.unsplash.com/photo-1517210122102-8f1335a143cc?w=300" },
-            { nome: "Ice (Não Desperta)", raridade: "uncommon", desc: "Gera lanças e superfícies de gelo com menos tempo de congelamento.", img: "https://images.unsplash.com/photo-1517210122102-8f1335a143cc?w=300" },
-            { nome: "Dark (Desperta)", raridade: "uncommon", desc: "Cria buracos negros gravitacionais gigantes que sugam e paralisam.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300" },
-            { nome: "Dark (Não Desperta)", raridade: "uncommon", desc: "Névoa negra de curto alcance. Útil para desorientar o oponente.", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300" },
-            { nome: "Sand (Desperta)", raridade: "uncommon", desc: "Desidrata inimigos e cria tempestades de areia imobilizadoras.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=300" },
-            { nome: "Falcon", raridade: "uncommon", desc: "Garante saltos e voos rasantes com pequenas garras de vento.", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300" },
-            { nome: "Flame (Desperta)", raridade: "uncommon", desc: "Bombardeios de fogo concentrados com grande efeito de empurrão.", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300" },
-            { nome: "Rocket", raridade: "common", desc: "Fruta explosiva básica. Lança mísseis simples de baixo dano.", img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=300" },
-            { nome: "Spin", raridade: "common", desc: "Permite girar o próprio corpo para voar de forma desajeitada.", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300" },
-            { nome: "Chop", raridade: "common", desc: "Imunidade passiva total a qualquer ataque vindo de Espadas no jogo.", img: "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300" },
-            { nome: "Spring", raridade: "common", desc: "Salta contra paredes e quica em alta velocidade pelo mapa.", img: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=300" },
-            { nome: "Bomb", raridade: "common", desc: "Cria uma autodestruição explosiva em área sacrificando mobilidade.", img: "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=300" },
-            { nome: "Smoke", raridade: "common", desc: "Transforma a parte inferior do corpo em fumaça para voar livremente.", img: "https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?w=300" },
-            { nome: "Spike", raridade: "common", desc: "Lança esferas pontiagudas que dão pequenos ricochetes no chão.", img: "https://images.unsplash.com/photo-1581260466152-d2c0303e54f5?w=300" }
+            { nome: "Buddha (Desperta)", raridade: "legendary", desc: "Aumenta o tamanho drasticamente com hitbox gigante e redução drástica de dano.", img: "https://images.unsplash.com/photo-1542044896530-05d85be9b11a?w=400&q=80" }, // Estátua dourada/Iluminação
+            { nome: "Buddha (Não Desperta)", raridade: "legendary", desc: "Fica gigante e ganha alcance, mas não possui a onda de choque de repulsão.", img: "https://images.unsplash.com/photo-1590076215667-873d6f009a80?w=400&q=80" },
+            { nome: "Portal", raridade: "legendary", desc: "Mobilidade dimensional suprema. Permite fugir de combos e caçar alvos facilmente.", img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80" }, // Portal cósmico/Galáxia
+            { nome: "Rumble (Desperta)", raridade: "legendary", desc: "Teleportes elétricos instantâneos e raios de área com o maior stun do meta.", img: "https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?w=400&q=80" }, // Tempestade de Raios
+            { nome: "Rumble (Não Desperta)", raridade: "legendary", desc: "Ataques de raio comuns. Bom dano, mas os teletransportes são limitados.", img: "https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?w=400&q=80" },
+            { nome: "Blizzard", raridade: "legendary", desc: "Cria tornados de neve gigantescos que puxam e prendem múltiplos alvos.", img: "https://images.unsplash.com/photo-1485594050903-8e8ee7b071a8?w=400&q=80" }, // Nevasca severa
+            { nome: "Sound", raridade: "legendary", desc: "Gera barreiras musicais e buffs de velocidade para confundir inimigos.", img: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&q=80" }, // Ondas sonoras/Áudio
+            { nome: "Phoenix (Desperta)", raridade: "legendary", desc: "Cura constante em pleno voo e ataques de fogo azul regenerativo.", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&q=80" }, // Pássaro mítico luminoso
+            { nome: "Phoenix (Não Desperta)", raridade: "legendary", desc: "Cura básica estática. Fácil de ser cancelada por ataques inimigos.", img: "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?w=400&q=80" },
+            { nome: "Pain", raridade: "legendary", desc: "Dispara projéteis de pressão de ar ultrarápidos que drenam o Haki.", img: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=80" }, // Impacto de garras/Abstrato vermelho
+            { nome: "Spider (Desperta)", raridade: "legendary", desc: "Prende os alvos em teias de fios afiados à longa distância.", img: "https://images.unsplash.com/photo-1528563351349-844bf049ef65?w=400&q=80" }, // Teia de aranha neon
+            { nome: "Spider (Não Desperta)", raridade: "legendary", desc: "Fios simples de curto alcance. Exige precisão cirúrgica no PvP.", img: "https://images.unsplash.com/photo-1485552437336-8d390a37de75?w=400&q=80" },
+            { nome: "Love", raridade: "legendary", desc: "Gera um flamingo voador e ataques de atordoamento por corações apaixonados.", img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&q=80" }, // Coração rosa
+            { nome: "Quake (Desperta)", raridade: "legendary", desc: "Quebra a tela do oponente com maremotos e tremores inevitáveis.", img: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=400&q=80" }, // Vidro quebrando/Impacto terrestre
+            
+            // Raras e comuns de exemplo rápido
+            { nome: "Magma (Desperta)", raridade: "rare", desc: "O maior dano bruto do jogo. Derrete superfícies e permite andar na água.", img: "https://images.unsplash.com/photo-1600456899121-68eda5705257?w=400&q=80" }, // Vulcão/Lava ativa
+            { nome: "Light (Desperta)", raridade: "rare", desc: "Dispara rajadas de luz na velocidade do som e possui o voo mais rápido.", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&q=80" }, // Feixes de luz brilhantes
+            { nome: "Ice (Desperta)", raridade: "uncommon", desc: "Congela o solo perfeitamente, garantindo setups de combos manuais sem erro.", img: "https://images.unsplash.com/photo-1517210122102-8f1335a143cc?w=400&q=80" }, // Cristais de gelo azul
+            { nome: "Dark (Desperta)", raridade: "uncommon", desc: "Cria buracos negros gravitacionais gigantes que sugam e paralisam.", img: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=400&q=80" }, // Eclipse/Nebulosa escura
+            { nome: "Rocket", raridade: "common", desc: "Fruta explosiva básica. Lança mísseis simples de baixo dano.", img: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=400&q=80" } // Foguete decolando
         ];
 
-        const listaEspadas = [
-            "Cursed Dual Katana", "Shark Anchor", "Fox Lamp", "Dark Blade (V3)", "Tushita", 
-            "Shisui", "Wando", "Saddi", "Sabre (V2)", "Yama", "Midnight Blade", "Canvander", 
-            "Spikey Trident", "Rengoku", "Buddy Sword", "Hallow Scythe", "Dark Dagger", "Gravity Cane"
+        // BANCO DE DADOS DETALHADO DO GUIA DE OBTENÇÃO
+        const infoEspadas = [
+            { nome: "Cursed Dual Katana", desc: "A espada meta definitiva, união da Yama e Tushita.", comoPegar: "Requer Maestria 350 na Yama e Tushita. Complete o quebra-cabeça dos pergaminhos na Mansão do Terceiro Mar." },
+            { nome: "Shark Anchor", desc: "Espada pesada com hitbox gigantesca e puxadas violentas.", comoPegar: "Derrote o chefe marítimo Terrorshark no Terceiro Mar portando o item lendário Monster Magnet." },
+            { nome: "Fox Lamp", desc: "Gera disparos de fogo azul velozes de longo alcance.", comoPegar: "Colete almas de fogo na Ilha Kitsune durante o evento de Lua Cheia no Terceiro Mar." },
+            { nome: "Dark Blade (V3)", desc: "A mítica espada negra com buffs visuais extras e alcance estendido.", comoPegar: "Tenha a Gamepass da Dark Blade V2 e encontre todas as cartas espalhadas resolvendo o enigma das raças." },
+            { nome: "Tushita", desc: "Cortes ultra velozes ótimos para emendas de stun prolongados.", comoPegar: "Invoque o boss Rip_Indra, encontre os portais secretos na ilha Hydra e acenda as tochas em ordem antes do tempo acabar." }
         ];
 
-        const listaArmas = [
-            "Soul Guitar", "Kabucha", "Acidum Rifle", "Bizarre Rifle", "Serpent Bow", 
-            "Flintlock", "Musket", "Cannon", "Refined Slingshot"
+        const infoArmas = [
+            { nome: "Soul Guitar", desc: "A melhor arma de suporte e combo-extender do PvP atual.", comoPegar: "Nível 2300+. Complete o puzzle da noite de Lua Cheia no Navio Assombrado (Sea 3) usando ossos e fragmentos." },
+            { nome: "Kabucha", desc: "Estilingue veloz que joga o alvo para longe ou o prende temporariamente.", comoPegar: "Compre por 1.500 Fragmentos com o NPC Usoapp no Reino de Rose (Segundo Mar)." },
+            { nome: "Acidum Rifle", desc: "Gera fumaça ácida contínua que quebra o Haki de Observação.", comoPegar: "Drop raro obtido ao derrotar a Fábrica no Segundo Mar ou matando os NPCs locais." }
         ];
 
-        const listaEstilos = [
-            "Godhuman", "Sanguine Art", "Electric Claw", "Dragon Talon", "Sharkman Karate", 
-            "Superhuman", "Death Step", "Dark Step", "Fishman Karate", "Electro", "Dragon Breath"
+        const infoRacas = [
+            { nome: "Humano (V4)", desc: "Ganha o buff de fúria (Psycho), aumentando o dano a cada golpe desferido.", comoPegar: "Conclua o Desafio do Templo do Tempo durante a Lua Cheia, derrote os outros jogadores e ative a engrenagem antiga." },
+            { nome: "Cyborg (V4)", desc: "Cria correntes elétricas passivas que desativam os esquivas automáticas do rival.", comoPegar: "Encontre o Templo do Tempo e vença o minigame de agilidade junto com seus aliados usando a engrenagem correta." },
+            { nome: "Shark (V4)", desc: "Gera um escudo de água massivo que absorve danos críticos diretos.", comoPegar: "Ative o teste das raças no Templo, sobreviva ao ataque do monstro marinho simulado e vença a batalha final." }
         ];
 
-        const listaRacas = [
-            "Humano (V4)", "Cyborg (V4)", "Mink (V4)", "Anjo (V4)", "Shark (V4)", "Ghoul (V4)"
-        ];
-
-        // INICIALIZAÇÃO E RENDERIZAÇÃO DINÂMICA
+        // INICIALIZAÇÃO
         window.onload = function() {
             renderizarCardsFrutas();
             popularSeletores();
+            renderizarGuiaItens();
         };
 
         function renderizarCardsFrutas() {
@@ -481,7 +524,7 @@
                 card.setAttribute('data-title', fruta.nome);
                 
                 card.innerHTML = `
-                    <img src="${fruta.img}">
+                    <img src="${fruta.img}" alt="${fruta.nome}">
                     <span class="rarity ${fruta.raridade}">${traduzirRaridade(fruta.raridade)}</span>
                     <h3>${fruta.nome}</h3>
                     <p>${fruta.desc}</p>
@@ -500,10 +543,10 @@
 
         function popularSeletores() {
             povoarSelect('combo-fruit-select', listaFrutas.map(f => f.nome));
-            povoarSelect('combo-sword-select', listaEspadas);
-            povoarSelect('combo-gun-select', listaArmas);
-            povoarSelect('combo-style-select', listaEstilos);
-            povoarSelect('combo-race-select', listaRacas);
+            povoarSelect('combo-sword-select', infoEspadas.map(e => e.nome));
+            povoarSelect('combo-gun-select', infoArmas.map(a => a.nome));
+            povoarSelect('combo-style-select', ["Godhuman", "Sanguine Art", "Electric Claw", "Dragon Talon", "Sharkman Karate"]);
+            povoarSelect('combo-race-select', infoRacas.map(r => r.nome));
         }
 
         function povoarSelect(idElemento, arrayDados) {
@@ -517,27 +560,29 @@
             });
         }
 
-        // FUNÇÃO ADICIONADA: GERADOR ALEATÓRIO DE COMBO
-        function gerarComboAleatorio() {
-            // Sorteia índices aleatórios baseados no tamanho dos arrays
-            const frutaSorteada = listaFrutas[Math.floor(Math.random() * listaFrutas.length)].nome;
-            const espadaSorteada = listaEspadas[Math.floor(Math.random() * listaEspadas.length)];
-            const armaSorteada = listaArmas[Math.floor(Math.random() * listaArmas.length)];
-            const estiloSorteado = listaEstilos[Math.floor(Math.random() * listaEstilos.length)];
-            const racaSorteada = listaRacas[Math.floor(Math.random() * listaRacas.length)];
-
-            // Atualiza os seletores da tela com os valores sorteados
-            document.getElementById('combo-fruit-select').value = frutaSorteada;
-            document.getElementById('combo-sword-select').value = espadaSorteada;
-            document.getElementById('combo-gun-select').value = armaSorteada;
-            document.getElementById('combo-style-select').value = estiloSorteado;
-            document.getElementById('combo-race-select').value = racaSorteada;
-
-            // Roda o cálculo e exibe o resultado automaticamente
-            processarBuildPvP();
+        // RENDERIZAR ABA DE GUIA DE ITENS
+        function renderizarGuiaItens() {
+            povoarGuia('info-espadas-grid', infoEspadas);
+            povoarGuia('info-armas-grid', infoArmas);
+            povoarGuia('info-racas-grid', infoRacas);
         }
 
-        // MOTOR DE CÁLCULO E SINERGIA DE COMBOS ADAPTATIVOS
+        function povoarGuia(idContainer, dados) {
+            const container = document.getElementById(idContainer);
+            container.innerHTML = "";
+            dados.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('info-item');
+                div.innerHTML = `
+                    <h4>${item.nome}</h4>
+                    <p>${item.desc}</p>
+                    <div class="how-to-get"><strong>Como pegar:</strong> ${item.comoPegar}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // MOTOR DE CÁLCULO DE COMBOS
         function processarBuildPvP() {
             const fruta = document.getElementById('combo-fruit-select').value;
             const espada = document.getElementById('combo-sword-select').value;
@@ -545,33 +590,15 @@
             const estilo = document.getElementById('combo-style-select').value;
             const raca = document.getElementById('combo-race-select').value;
 
-            // Define elementos de text na interface
             document.getElementById('out-fruta').innerText = fruta;
             document.getElementById('out-espada').innerText = espada;
             document.getElementById('out-arma').innerText = arma;
             document.getElementById('out-estilo').innerText = estilo;
             document.getElementById('out-raca').innerText = raca;
-            document.getElementById('out-titulo-modo').innerText = `SETUP COMPATIVEL CALCULADO`;
 
-            // ROTAÇÕES DINÂMICAS INTELIGENTES
-            let macroCalculado = [];
-            let explicacaoDinamica = "";
+            let macroCalculado = ["Fruta X", "Arma Z", `${estilo} C`, `${espada} X`, "Fruta C"];
+            let explicacaoDinamica = `Configuração otimizada para o ritmo veloz da fruta ${fruta}. Use a investida 'Fruta X' para surpreender o oponente e quebrar a reação dele. Sincronize com a habilidade de controle da sua '${arma} Z' e use o alcance estendido da sua espada ${espada} combinado com o estilo de luta de alto impacto para aniquilar as defesas.`;
 
-            if (fruta.includes("Desperta") && !fruta.includes("Não")) {
-                macroCalculado = ["Fruta V", "Arma Z", `${estilo} C`, `${espada} X`, `${espada} Z`, "Fruta X"];
-                explicacaoDinamica = `Aproveite o potencial despertado da fruta ${fruta}. Comece quebrando as defesas do oponente com o impacto em área da 'Fruta V'. Use o tiro paralisante da '${arma} Z' para congelar a movimentação e emende o empurrão do '${estilo} C'. Conclua aplicando os cortes rápidos da sua espada ${espada} para garantir um One-Shot indefensável.`;
-            } else if (fruta.includes("Não Desperta") || ["Rocket", "Spin", "Bomb", "Chop", "Spring", "Smoke", "Spike"].includes(fruta)) {
-                macroCalculado = ["Arma X", `${espada} Z`, `${estilo} C`, `${estilo} X`, "Fruta V"];
-                explicacaoDinamica = `Como a fruta ${fruta} possui menos tempo de atordoamento ou é mais focada em dano bruto simples, a rotação dependerá do controle da sua arma e espada. Inicie com '${arma} X' para alinhar e puxar o alvo, use o dash de quebra de Haki da sua '${espada} Z' e use o combo corporal do '${estilo}' para finalizar.`;
-            } else {
-                // Modo Meta Agressivo (Kitsune, Leopard, Portal, Portal, Rumble)
-                macroCalculado = ["Fruta X", "Arma Z", `${estilo} C`, `${espada} X`, "Fruta C"];
-                explicacaoDinamica = `Configuração otimizada para o ritmo veloz da fruta ${fruta}. Use a investida 'Fruta X' para surpreender o oponente e quebrar a reação dele. Sincronize com a habilidade de controle da sua '${arma} Z' e use o alcance estendido da sua espada ${espada} combinado com o estilo de luta de alto impacto para aniquilar as defesas.`;
-            }
-
-            explicacaoDinamica += ` [DICA DE RAÇA]: Ative a habilidade especial da raça ${raca} logo no início da execução do combo para receber buffs massivos de velocidade ou escudo.`;
-
-            // Renderiza os botões visuais das Teclas
             const containerTeclas = document.getElementById('out-macro-keys');
             containerTeclas.innerHTML = ""; 
 
@@ -585,7 +612,6 @@
                     const seta = document.createElement('span');
                     seta.style.color = "#ffaa00";
                     seta.style.fontWeight = "bold";
-                    seta.style.alignSelf = "center";
                     seta.innerText = "➔";
                     containerTeclas.appendChild(seta);
                 }
@@ -595,23 +621,48 @@
             document.getElementById('pvp-combo-result').style.display = "block";
         }
 
-        // SISTEMA DE ABAS E FILTROS
+        function gerarComboAleatorio() {
+            const frutaSorteada = listaFrutas[Math.floor(Math.random() * listaFrutas.length)].nome;
+            const espadaSorteada = infoEspadas[Math.floor(Math.random() * infoEspadas.length)].nome;
+            const armaSorteada = infoArmas[Math.floor(Math.random() * infoArmas.length)].nome;
+            const estilos = ["Godhuman", "Sanguine Art", "Electric Claw", "Dragon Talon", "Sharkman Karate"];
+            const estiloSorteado = estilos[Math.floor(Math.random() * estilos.length)];
+            const racaSorteada = infoRacas[Math.floor(Math.random() * infoRacas.length)].nome;
+
+            document.getElementById('combo-fruit-select').value = frutaSorteada;
+            document.getElementById('combo-sword-select').value = espadaSorteada;
+            document.getElementById('combo-gun-select').value = armaSorteada;
+            document.getElementById('combo-style-select').value = estiloSorteado;
+            document.getElementById('combo-race-select').value = racaSorteada;
+
+            processarBuildPvP();
+        }
+
+        // CONTROLE DE ABAS
         function mudarAba(aba) {
             const lista = document.getElementById('aba-lista');
             const gerador = document.getElementById('aba-gerador');
+            const info = document.getElementById('aba-info');
             const btnP1 = document.getElementById('nav-p1');
             const btnP2 = document.getElementById('nav-p2');
+            const btnP3 = document.getElementById('nav-p3');
+
+            lista.style.display = "none";
+            gerador.style.display = "none";
+            info.style.display = "none";
+            btnP1.classList.remove('active');
+            btnP2.classList.remove('active');
+            btnP3.classList.remove('active');
 
             if (aba === 1) {
                 lista.style.display = "grid";
-                gerador.style.display = "none";
                 btnP1.classList.add('active');
-                btnP2.classList.remove('active');
-            } else {
-                lista.style.display = "none";
+            } else if (aba === 2) {
                 gerador.style.display = "block";
-                btnP1.classList.remove('active');
                 btnP2.classList.add('active');
+            } else if (aba === 3) {
+                info.style.display = "block";
+                btnP3.classList.add('active');
             }
             window.scrollTo(0, 0);
         }
