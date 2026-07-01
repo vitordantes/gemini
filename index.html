@@ -1,2 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blox Fruits - Ultimate PvP Hub & Video Simulator</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0e14;
+            color: #c9d1d9;
+        }
+
+        /* Header Cyber-Gamer */
+        header {
+            background: linear-gradient(135deg, #121620 0%, #0b0e14 100%);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #ff4400;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        header .logo-container {
+            border-left: 5px solid #ffaa00;
+            padding-left: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 30px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(255, 68, 0, 0.6);
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: #8b949e;
+            font-size: 13px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 8px 14px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #ffaa00;
+            background-color: #1c212c;
+        }
+
+        .search-container input {
+            padding: 10px 18px;
+            width: 180px;
+            border: 2px solid #21262d;
+            border-radius: 25px;
+            background-color: #0b0e14;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #ffaa00;
+            width: 240px;
+        }
+
+        main {
+            padding: 30px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-left: 5px solid #ffaa00;
+            padding-left: 12px;
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #121620;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid #21262d;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .card.glow-mythical:hover { border-color: #a335ee; box-shadow: 0 0 15px rgba(163, 53, 238, 0.4); transform: translateY(-5px); }
+        .card.glow-legendary:hover { border-color: #ff7f00; box-shadow: 0 0 15px rgba(255, 127, 0, 0.4); transform: translateY(-5px); }
+        .card.glow-rare:hover { border-color: #0070dd; box-shadow: 0 0 15px rgba(0, 112, 221, 0.4); transform: translateY(-5px); }
+        .card.glow-uncommon:hover { border-color: #1ed760; box-shadow: 0 0 15px rgba(30, 215, 96, 0.4); transform: translateY(-5px); }
+        .card.glow-common:hover { border-color: #8b949e; box-shadow: 0 0 15px rgba(139, 148, 158, 0.4); transform: translateY(-5px); }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: #161b22;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: transform 0.3s;
+        }
+
+        .card:hover img { transform: scale(1.05); }
+        .card h3 { margin: 5px 0 2px 0; color: #ffffff; font-size: 18px; }
+        .card p { color: #8b949e; font-size: 13px; line-height: 1.4; margin: 0; height: 55px; overflow: hidden; }
+
+        .rarity { font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; width: fit-content; }
+        .mythical { background-color: #a335ee; color: white; }
+        .legendary { background-color: #ff7f00; color: white; }
+        .rare { background-color: #0070dd; color: white; }
+        .uncommon { background-color: #1ed760; color: black; }
+        .common { background-color: #8b949e; color: black; }
+
+        .actions button {
+            background-color: #1c212c; color: white; border: 1px solid #21262d;
+            padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px;
+            transition: all 0.2s;
+        }
+        .actions button.liked { background-color: #ff4400; border-color: #ffaa00; }
+
+        #aba-gerador, #aba-info { display: none; }
+
+        .generator-container, .info-container {
+            background-color: #121620; border-radius: 12px; padding: 30px; border: 1px solid #21262d;
+        }
+
+        .selector-box {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;
+        }
+
+        .selector-box div { display: flex; flex-direction: column; gap: 5px; }
+        .selector-box label { font-size: 13px; color: #ffaa00; font-weight: bold; text-transform: uppercase; }
+        .selector-box select {
+            padding: 12px 15px; background-color: #0b0e14; color: white; border: 2px solid #21262d;
+            border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; width: 100%;
+        }
+        .selector-box select:focus { border-color: #ffaa00; }
+
+        .button-wrapper {
+            grid-column: 1 / -1; display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;
+        }
+
+        .btn-build {
+            background: linear-gradient(135deg, #ff4400 0%, #ffaa00 100%);
+            color: white; border: none; padding: 14px 30px; border-radius: 8px;
+            font-size: 14px; font-weight: bold; cursor: pointer; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 68, 0, 0.4);
+        }
+
+        .btn-random {
+            background: linear-gradient(135deg, #0070dd 0%, #00d2ff 100%);
+            color: white; border: none; padding: 14px 30px; border-radius: 8px;
+            font-size: 14px; font-weight: bold; cursor: pointer; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 112, 221, 0.4);
+        }
+
+        .btn-extended {
+            background: linear-gradient(135deg, #b335ee 0%, #ff007f 100%);
+            color: white; border: none; padding: 14px 30px; border-radius: 8px;
+            font-size: 14px; font-weight: bold; cursor: pointer; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(179, 53, 238, 0.4);
+        }
+
+        .btn-build:hover, .btn-random:hover, .btn-extended:hover { transform: scale(1.03); }
+
+        .combo-panel {
+            background-color: #0b0e14; border-radius: 10px; padding: 25px; border: 2px solid #21262d;
+            display: none; animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .combo-title {
+            font-size: 22px; color: #ffaa00; font-weight: bold; margin-top: 0; margin-bottom: 20px;
+            border-bottom: 1px solid #21262d; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .stats-panel {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+            background: #161b22; padding: 15px; border-radius: 8px; border: 1px solid #30363d;
+        }
+
+        .damage-box h4, .stats-box h4 { margin: 0 0 10px 0; color: #ffaa00; font-size: 14px; text-transform: uppercase;}
+        .damage-value { font-size: 28px; font-weight: bold; color: #ff4400; margin-bottom: 5px; }
+        .damage-bar { width: 100%; background: #21262d; height: 8px; border-radius: 4px; overflow: hidden; }
+        .damage-fill { height: 100%; background: linear-gradient(90deg, #ff4400, #ffaa00); width: 0%; transition: width 0.5s; }
+
+        .stat-line { font-size: 13px; color: #c9d1d9; margin-bottom: 4px; display: flex; justify-content: space-between; }
+        .stat-line strong { color: #1ed760; }
+
+        .build-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 25px; }
+        .build-item { background-color: #121620; padding: 12px; border-radius: 8px; border-left: 4px solid #ff4400; }
+        .build-item span { font-size: 11px; color: #8b949e; text-transform: uppercase; display: block; }
+        .build-item strong { font-size: 15px; color: #ffffff; display: block; margin-top: 5px; }
+
+        .sequence-box { background-color: #1a1510; border: 1px solid #ffaa00; padding: 20px; border-radius: 8px; margin-top: 15px; }
+        .sequence-title { color: #ffaa00; font-weight: bold; margin-bottom: 10px; font-size: 16px; }
+        .macro-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; align-items: center; }
+        
+        .macro-key {
+            background-color: #ff4400; color: white; padding: 6px 12px; border-radius: 4px;
+            font-weight: bold; font-family: monospace; font-size: 14px; box-shadow: 0 3px 0 #b32d00;
+        }
+
+        /* ESTILOS DO SIMULADOR DE VÍDEO */
+        .video-simulator-box {
+            margin-top: 25px; background-color: #161b22; border: 1px solid #30363d;
+            padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; gap: 15px;
+        }
+        .video-controls { display: flex; gap: 15px; width: 100%; justify-content: center; }
+        .btn-video {
+            background-color: #21262d; color: #1ed760; border: 1px solid #30363d; padding: 10px 20px;
+            border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-video:hover { background-color: #1ed760; color: black; }
+        canvas { background-color: #020408; border: 2px solid #ffaa00; border-radius: 8px; max-width: 100%; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+
+        /* Guia de Itens */
+        .info-section { margin-bottom: 40px; }
+        .info-section h3 { color: #ffaa00; border-bottom: 1px solid #21262d; padding-bottom: 8px; font-size: 20px; margin-top: 0; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .info-item { background-color: #0b0e14; padding: 15px; border-radius: 8px; border: 1px solid #21262d; }
+        .info-item h4 { margin: 0 0 5px 0; color: #ffffff; font-size: 16px; }
+        .info-item p { margin: 0; font-size: 13px; color: #8b949e; line-height: 1.5; }
+        .info-item .how-to-get { margin-top: 8px; font-size: 13px; color: #1ed760; }
+
+        footer { text-align: center; padding: 30px; background-color: #121620; margin-top: 60px; color: #8b949e; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <h1>Blox Fruits - Pro PvP Hub</h1>
+            <p>Database Completo & Simulador Gráfico de Combos Metagame</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Enciclopédia</a></li>
+                <li><a id="nav-p2" onclick="mudarAba(2)">⚔️ Montar Combo & Vídeo</a></li>
+                <li><a id="nav-p3" onclick="mudarAba(3)">📖 Guia de Itens</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Filtrar frutas..." oninput="filtrarFrutas()">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="aba-lista">
+            <h2>Frutas Catalogadas (Visual de Capas Oficiais)</h2>
+            <div class="grid-container" id="container-cards-frutas"></div>
+        </div>
+
+        <div id="aba-gerador">
+            <h2>Montador Inteligente & Reprodutor de Vídeo PvP</h2>
+            <div class="generator-container">
+                <p>Monte o setup e assista à execução gráfica da macro simulada em tempo real pelo motor gráfico HTML5:</p>
+                
+                <div class="selector-box">
+                    <div>
+                        <label for="combo-fruit-select">📦 Selecionar Capa da Fruta</label>
+                        <select id="combo-fruit-select"></select>
+                    </div>
+                    <div>
+                        <label for="combo-sword-select">⚔️ Selecionar Espada</label>
+                        <select id="combo-sword-select"></select>
+                    </div>
+                    <div>
+                        <label for="combo-gun-select">🔫 Selecionar Arma</label>
+                        <select id="combo-gun-select"></select>
+                    </div>
+                    <div>
+                        <label for="combo-style-select">👊 Estilo de Luta</label>
+                        <select id="combo-style-select"></select>
+                    </div>
+                    <div>
+                        <label for="combo-race-select">🧬 Selecionar Raça</label>
+                        <select id="combo-race-select"></select>
+                    </div>
+
+                    <div class="button-wrapper">
+                        <button class="btn-build" onclick="processarBuildPvP(false)">⚔️ GERAR COMBO PADRÃO</button>
+                        <button class="btn-extended" onclick="processarBuildPvP(true)">🔮 COMBO ESTENDIDO (MAX)</button>
+                        <button class="btn-random" onclick="gerarComboAleatorio()">🎲 SORTEIO META ALEATÓRIO</button>
+                    </div>
+                </div>
+
+                <div class="combo-panel" id="pvp-combo-result">
+                    <div class="combo-title">
+                        <span id="out-titulo-modo">BUILD PVP SINCRONIZADA</span>
+                        <span id="out-tipo-combo" style="font-size:12px; padding:4px 10px; background:#ff4400; border-radius:4px; color:white;">PADRÃO</span>
+                    </div>
+
+                    <div class="stats-panel">
+                        <div class="damage-box">
+                            <h4>Dano Superficial Estimado</h4>
+                            <div class="damage-value" id="out-dano-num">0</div>
+                            <div class="damage-bar">
+                                <div class="damage-fill" id="out-dano-bar"></div>
+                            </div>
+                        </div>
+                        <div class="stats-box">
+                            <h4>Sugestão de Atributos (Max: 2550)</h4>
+                            <div class="stat-line">Soco (Melee): <strong id="stat-melee">0</strong></div>
+                            <div class="stat-line">Defesa (Defense): <strong id="stat-defense">2550</strong></div>
+                            <div class="stat-line">Espada (Sword): <strong id="stat-sword">0</strong></div>
+                            <div class="stat-line">Arma (Gun): <strong id="stat-gun">0</strong></div>
+                            <div class="stat-line">Fruta (Blox Fruit): <strong id="stat-fruit">0</strong></div>
+                        </div>
+                    </div>
+                    
+                    <div class="build-grid">
+                        <div class="build-item"><span>📦 Capa Fruta</span><strong id="out-fruta">-</strong></div>
+                        <div class="build-item"><span>⚔️ Espada</span><strong id="out-espada">-</strong></div>
+                        <div class="build-item"><span>🔫 Arma</span><strong id="out-arma">-</strong></div>
+                        <div class="build-item"><span>👊 Estilo de Luta</span><strong id="out-estilo">-</strong></div>
+                        <div class="build-item"><span>🧬 Raça</span><strong id="out-raca">-</strong></div>
+                    </div>
+
+                    <div class="sequence-box">
+                        <div class="sequence-title">Sequência de Execução Calculada:</div>
+                        <div class="macro-buttons" id="out-macro-keys"></div>
+                        <p id="out-explicacao" style="margin: 10px 0 2px 0; font-size: 14px; line-height: 1.5; color: #e1e7ed;"></p>
+                    </div>
+
+                    <div class="video-simulator-box">
+                        <h3 style="color: #ffaa00; margin: 0;">🎥 Reprodutor de Vídeo do Combo (Simulação Realtime)</h3>
+                        <canvas id="videoCanvas" width="640" height="360"></canvas>
+                        <div class="video-controls">
+                            <button class="btn-video" onclick="iniciarSimulacaoVideo()">▶️ ASSISTIR VÍDEO DO COMBO</button>
+                            <button class="btn-video" style="color: #ffaa00;" onclick="baixarVideoFake()">💾 EXPORTAR / BAIXAR MP4</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="aba-info">
+            <h2>Guia de Obtenção do Metagame</h2>
+            <div class="info-container">
+                <div class="info-section">
+                    <h3>⚔️ Espadas Catalogadas (Ordem de Raridade)</h3>
+                    <div class="info-grid" id="info-espadas-grid"></div>
+                </div>
+                <div class="info-section">
+                    <h3>🔫 Armas de Longo Alcance</h3>
+                    <div class="info-grid" id="info-armas-grid"></div>
+                </div>
+                <div class="info-section">
+                    <h3>👊 Estilos de Luta</h3>
+                    <div class="info-grid" id="info-estilos-grid"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Blox Fruits PvP Hub - Pronto para Deploy no GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // ALTERADO: Imagens apontando diretamente para as CAPAS/CAIXAS físicas das frutas (Physical Fruits) da Wiki oficial
+        const listaFrutas = [
+            { nome: "Kitsune", raridade: "mythical", multiplicador: 1.5, desc: "A capa mística da raposa lendária com detalhes em aura de fogo espiritual.", img: "https://static.wikia.nocookie.net/blox-fruits/images/c/c8/Kitsune_Box.png" },
+            { nome: "Leopard", raridade: "mythical", multiplicador: 1.45, desc: "Caixa estampada com padrões de leopardo selvagem com alta velocidade de ativação.", img: "https://static.wikia.nocookie.net/blox-fruits/images/e/ea/Leopard_Box.png" },
+            { nome: "Dragon", raridade: "mythical", multiplicador: 1.48, desc: "A clássica caixa do dragão oriental envolta em escamas indestrutíveis.", img: "https://static.wikia.nocookie.net/blox-fruits/images/f/f6/Dragon_Box.png" },
+            { nome: "Dough", raridade: "mythical", multiplicador: 1.4, desc: "Caixa estilizada da fruta da massa, famosa pelos combos One-Shot.", img: "https://static.wikia.nocookie.net/blox-fruits/images/1/14/Dough_Box.png" },
+            { nome: "T-Rex", raridade: "mythical", multiplicador: 1.38, desc: "Poderosa caixa com traços jurássicos de dinossauro predador.", img: "https://static.wikia.nocookie.net/blox-fruits/images/6/60/T-Rex_Box.png" },
+            { nome: "Mammoth", raridade: "mythical", multiplicador: 1.35, desc: "Capa pesada e blindada representando a força bruta do Mamute ancestral.", img: "https://static.wikia.nocookie.net/blox-fruits/images/8/84/Mammoth_Box.png" },
+            { nome: "Spirit", raridade: "mythical", multiplicador: 1.37, desc: "Linda caixa dividida entre as cores das almas da benevolência e da fúria.", img: "https://static.wikia.nocookie.net/blox-fruits/images/5/53/Spirit_Box.png" },
+            { nome: "Venom", raridade: "mythical", multiplicador: 1.36, desc: "Capa tóxica que emana gases roxos venenosos em seu design externo.", img: "https://static.wikia.nocookie.net/blox-fruits/images/3/3d/Venom_Box.png" },
+            { nome: "Shadow", raridade: "mythical", multiplicador: 1.32, desc: "Caixa sombria escura com gavinhas pretas que absorvem a iluminação local.", img: "https://static.wikia.nocookie.net/blox-fruits/images/e/e0/Shadow_Box.png" },
+            { nome: "Gravity", raridade: "mythical", multiplicador: 1.25, desc: "Caixa roxa texturizada com espirais gravitacionais de forte impacto.", img: "https://static.wikia.nocookie.net/blox-fruits/images/c/c4/Gravity_Box.png" },
+            { nome: "Buddha", raridade: "legendary", multiplicador: 1.1, desc: "A caixa dourada brilhante mais cobiçada para farm de maestria do jogo.", img: "https://static.wikia.nocookie.net/blox-fruits/images/a/a4/Buddha_Box.png" },
+            { nome: "Portal", raridade: "legendary", multiplicador: 1.15, desc: "Design tecnológico dimensional azul neon focado em teletransportes rápidos.", img: "https://static.wikia.nocookie.net/blox-fruits/images/3/3c/Portal_Box.png" },
+            { nome: "Rumble", raridade: "legendary", multiplicador: 1.28, desc: "Capa energizada que emite faíscas constantes e raios amarelos estáticos.", img: "https://static.wikia.nocookie.net/blox-fruits/images/e/e1/Rumble_Box.png" },
+            { nome: "Blizzard", raridade: "legendary", multiplicador: 1.26, desc: "Caixa congelante coberta por uma espessa camada de geada inquebrável.", img: "https://static.wikia.nocookie.net/blox-fruits/images/6/62/Blizzard_Box.png" },
+            { nome: "Sound", raridade: "legendary", multiplicador: 1.22, desc: "Capa estilizada como uma mesa de som de DJ gamer retroiluminada.", img: "https://static.wikia.nocookie.net/blox-fruits/images/5/55/Sound_Box.png" },
+            { nome: "Phoenix", raridade: "legendary", multiplicador: 1.2, desc: "Caixa com design de asas míticas de fogo azul regenerativo.", img: "https://static.wikia.nocookie.net/blox-fruits/images/f/f7/Phoenix_Box.png" },
+            { nome: "Pain", raridade: "legendary", multiplicador: 1.18, desc: "Antiga Paw, estilizada com marcas de garras e bolhas de repulsão.", img: "https://static.wikia.nocookie.net/blox-fruits/images/d/df/Pain_Box.png" },
+            { nome: "Spider", raridade: "legendary", multiplicador: 1.24, desc: "Caixa preta envolta em teias geométricas brancas simétricas.", img: "https://static.wikia.nocookie.net/blox-fruits/images/c/ca/Spider_Box.png" },
+            { nome: "Love", raridade: "legendary", multiplicador: 1.16, desc: "Capa rosa brilhante decorada com corações em alto relevo.", img: "https://static.wikia.nocookie.net/blox-fruits/images/5/5a/Love_Box.png" },
+            { nome: "Quake", raridade: "legendary", multiplicador: 1.25, desc: "Caixa cinza craquelada que parece rachar devido a tremores constantes.", img: "https://static.wikia.nocookie.net/blox-fruits/images/5/52/Quake_Box.png" }
+        ];
+
+        const infoEspadas = [
+            { nome: "Cursed Dual Katana", pesoDano: 800, desc: "União devastadora da Yama e Tushita. Velocidade e dano insanos." },
+            { nome: "Dark Blade", pesoDano: 810, desc: "Mítica espada negra lendária com ondas de cortes gigantes de longo alcance." },
+            { nome: "Shark Anchor", pesoDano: 770, desc: "Espada pesada com âncora que arrasta inimigos no ar e quebra combos." },
+            { nome: "Tushita", pesoDano: 740, desc: "Cortes sagrados ultrarrápidos excelentes para travar o inimigo." },
+            { nome: "Yama", pesoDano: 730, desc: "Espada amaldiçoada movida pelo número de mortes do jogador." }
+        ];
+
+        const infoArmas = [
+            { nome: "Soul Guitar", pesoDano: 380, desc: "A soberana absoluta do PvP. Notas musicais de cura e raio de blackout total." },
+            { nome: "Acidum Rifle", pesoDano: 340, desc: "Dispara rajadas de fumaça ácida contínua que estouram defesas e quebram Haki." },
+            { nome: "Kabucha", pesoDano: 280, desc: "Estilingue lendário de alta velocidade que joga o rival longe com rajadas de fogo." }
+        ];
+
+        const infoEstilos = [
+            { nome: "Godhuman", pesoDano: 4300, desc: "O auge dos estilos de luta. Socos impulsionados com empurrões e rajadas." },
+            { nome: "Sanguine Art", pesoDano: 4400, desc: "Gera garras de sangue que roubam vida do alvo e o prendem no solo." },
+            { nome: "Electric Claw", pesoDano: 4100, desc: "Garras elétricas focadas em dashes ultrarrápidos e emendas de combos." }
+        ];
+
+        const infoRacas = [
+            { nome: "Humano (V4)", mod: 1.15 }, { nome: "Cyborg (V4)", mod: 1.10 }, { nome: "Shark (V4)", mod: 1.00 },
+            { nome: "Mink (V4)", mod: 1.05 }, { nome: "Ghoul (V4)", mod: 1.12 }, { nome: "Angel (V4)", mod: 1.08 }
+        ];
+
+        let macroGlobalAtiva = [];
+        let canvas, ctx, animationId;
+
+        window.onload = function() {
+            canvas = document.getElementById('videoCanvas');
+            ctx = canvas.getContext('2d');
+            desenharTelaInicialCanvas();
+            renderizarCardsFrutas();
+            popularSeletores();
+        };
+
+        function desenharTelaInicialCanvas() {
+            ctx.fillStyle = "#020408"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#ffaa00"; ctx.font = "bold 16px sans-serif"; ctx.textAlign = "center";
+            ctx.fillText("PRONTO PARA RENDERIZAR O VÍDEO DO COMBO", canvas.width / 2, canvas.height / 2);
+        }
+
+        function renderizarCardsFrutas() {
+            const container = document.getElementById('container-cards-frutas');
+            container.innerHTML = "";
+            listaFrutas.forEach(fruta => {
+                const card = document.createElement('div');
+                card.classList.add('card', `glow-${fruta.raridade}`);
+                card.setAttribute('data-title', fruta.nome);
+                card.innerHTML = `
+                    <img src="${fruta.img}" alt="${fruta.nome}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150';">
+                    <span class="rarity ${fruta.raridade}">${fruta.raridade}</span>
+                    <h3>${fruta.nome} (Capa)</h3>
+                    <p>${fruta.desc}</p>
+                    <div class="actions"><button onclick="curtir(this)">🔥 <span class="like-count">0</span></button></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function popularSeletores() {
+            povoarSelect('combo-fruit-select', listaFrutas.map(f => f.nome));
+            povoarSelect('combo-sword-select', infoEspadas.map(e => e.nome));
+            povoarSelect('combo-gun-select', infoArmas.map(a => a.nome));
+            povoarSelect('combo-style-select', infoEstilos.map(s => s.nome));
+            povoarSelect('combo-race-select', infoRacas.map(r => r.nome));
+        }
+
+        function povoarSelect(id, array) {
+            const s = document.getElementById(id); s.innerHTML = "";
+            array.forEach(i => { const o = document.createElement('option'); o.value = i; o.innerText = i; s.appendChild(o); });
+        }
+
+        function processarBuildPvP(isExtended = false) {
+            cancelAnimationFrame(animationId);
+            desenharTelaInicialCanvas();
+
+            const frutaNome = document.getElementById('combo-fruit-select').value;
+            const espadaNome = document.getElementById('combo-sword-select').value;
+            const armaNome = document.getElementById('combo-gun-select').value;
+            const estiloNome = document.getElementById('combo-style-select').value;
+            const racaNome = document.getElementById('combo-race-select').value;
+
+            const frutaObj = listaFrutas.find(f => f.nome === frutaNome);
+            const espadaObj = infoEspadas.find(e => e.nome === espadaNome);
+            const armaObj = infoArmas.find(a => a.nome === armaNome);
+            const estiloObj = infoEstilos.find(s => s.nome === estiloNome);
+            const racaObj = infoRacas.find(r => r.nome === racaNome);
+
+            document.getElementById('out-fruta').innerText = frutaNome;
+            document.getElementById('out-espada').innerText = espadaNome;
+            document.getElementById('out-arma').innerText = armaNome;
+            document.getElementById('out-estilo').innerText = estiloNome;
+            document.getElementById('out-raca').innerText = racaNome;
+            
+            document.getElementById('out-tipo-combo').innerText = isExtended ? "ONE-SHOT MAX" : "PADRÃO";
+
+            let danoTotal = Math.floor((estiloObj.pesoDano + (5000 * frutaObj.multiplicador) + (espadaObj.pesoDano * 6.2)) * racaObj.mod);
+            if (isExtended) danoTotal = Math.floor(danoTotal * 1.5);
+            document.getElementById('out-dano-num').innerText = danoTotal.toLocaleString() + " HP";
+            document.getElementById('out-dano-bar').style.width = `${Math.min((danoTotal/26000)*100, 100)}%`;
+
+            macroGlobalAtiva = isExtended ? 
+                ["Arma X", "Fruta V", `${estiloNome} C`, `${espadaNome} Z`, "Fruta C"] : 
+                ["Fruta X", "Arma Z", `${estiloNome} C`, `${espadaNome} X`];
+
+            const containerTeclas = document.getElementById('out-macro-keys');
+            containerTeclas.innerHTML = ""; 
+            macroGlobalAtiva.forEach((tecla, index) => {
+                const b = document.createElement('span'); b.classList.add('macro-key'); b.innerText = tecla; containerTeclas.appendChild(b);
+                if (index < macroGlobalAtiva.length - 1) {
+                    const s = document.createElement('span'); s.style.color = "#ffaa00"; s.innerText = " ➔ "; containerTeclas.appendChild(s);
+                }
+            });
+
+            document.getElementById('out-explicacao').innerText = `Vídeo de simulação carregado para o setup: ${frutaNome} + ${espadaNome}. Clique abaixo para rodar a simulação MP4.`;
+            document.getElementById('pvp-combo-result').style.display = "block";
+        }
+
+        /* MOTOR GRÁFICO AVANÇADO DO VÍDEO (SIMULAÇÃO VIA CANVAS) */
+        function iniciarSimulacaoVideo() {
+            if(macroGlobalAtiva.length === 0) return;
+            cancelAnimationFrame(animationId);
+
+            let frame = 0;
+            let currentKeyIndex = 0;
+            let hpInimigo = 100;
+            let totalFrames = macroGlobalAtiva.length * 45 + 30;
+            
+            let player = { x: 100, y: 220, color: "#00d2ff" };
+            let inimigo = { x: 450, y: 220, color: "#ff4400", IsStunned: false, shake: 0 };
+            let efeitos = [];
+
+            function rodarVideo() {
+                // Background da Arena PvP
+                ctx.fillStyle = "#090d16"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#1f293d"; ctx.fillRect(0, 260, canvas.width, 100); // Chão da Arena
+
+                // Interface do Player (Watermark Superior)
+                ctx.fillStyle = "rgba(255, 170, 0, 0.1)"; ctx.fillRect(10, 10, 620, 40);
+                ctx.fillStyle = "#ffaa00"; ctx.font = "bold 12px monospace"; ctx.textAlign = "left";
+                ctx.fillText(`▶️ REPRODUZINDO COMBO: RENDER_ENGINE_V2_2026`, 20, 34);
+
+                // HUD de Vida do Inimigo (Descendo conforme o combo entra)
+                ctx.fillStyle = "#333"; ctx.fillRect(400, 60, 200, 15);
+                ctx.fillStyle = "#1ed760"; ctx.fillRect(400, 60, hpInimigo * 2, 15);
+                ctx.fillStyle = "#ffffff"; ctx.font = "10px sans-serif"; ctx.fillText(`DUMMY TARGET HP: ${Math.floor(hpInimigo)}%`, 400, 90);
+
+                // Troca de botões/skills ativos de forma sincronizada
+                if (frame > 0 && frame % 45 === 0 && currentKeyIndex < macroGlobalAtiva.length - 1) {
+                    currentKeyIndex++;
+                    hpInimigo = Math.max(hpInimigo - (100 / macroGlobalAtiva.length), 0);
+                    inimigo.shake = 10;
+                    
+                    // Adiciona efeitos dinâmicos baseados na skill no Canvas
+                    efeitos.push({
+                        x: inimigo.x + 25, y: inimigo.y + 25,
+                        raio: 10, maxRaio: 60, alpha: 1,
+                        tipo: currentKeyIndex % 2 === 0 ? "explosao" : "corte"
+                    });
+                }
+
+                // Desenha Tecla Atual Sendo Executada na Tela do Vídeo
+                ctx.fillStyle = "rgba(0, 0, 0, 0.7)"; ctx.fillRect(20, 70, 180, 45);
+                ctx.strokeStyle = "#ffaa00"; ctx.strokeRect(20, 70, 180, 45);
+                ctx.fillStyle = "#fff"; ctx.font = "bold 14px sans-serif";
+                ctx.fillText(`INPUT: ${macroGlobalAtiva[currentKeyIndex]}`, 35, 96);
+
+                // Aplica efeito de tremor se houver dano
+                let shakeX = 0;
+                if(inimigo.shake > 0) {
+                    shakeX = (Math.random() - 0.5) * inimigo.shake;
+                    inimigo.shake--;
+                }
+
+                // Renderiza Personagens (Modelos Geométricos de Alta Performance)
+                ctx.fillStyle = player.color; ctx.fillRect(player.x, player.y, 50, 50); // Atacante
+                ctx.fillStyle = inimigo.color; ctx.fillRect(inimigo.x + shakeX, inimigo.y, 50, 50); // Alvo
+
+                // Desenha e atualiza partículas do vídeo
+                efeitos.forEach((ef, i) => {
+                    ctx.save();
+                    ctx.globalAlpha = ef.alpha;
+                    if(ef.tipo === "explosao") {
+                        ctx.fillStyle = "#ffaa00"; ctx.beginPath(); ctx.arc(ef.x, ef.y, ef.raio, 0, Math.PI*2); ctx.fill();
+                    } else {
+                        ctx.strokeStyle = "#00ffff"; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(ef.x - ef.raio, ef.y - ef.raio); ctx.lineTo(ef.x + ef.raio, ef.y + ef.raio); ctx.stroke();
+                    }
+                    ctx.restore();
+                    ef.raio += 4; ef.alpha -= 0.05;
+                    if(ef.alpha <= 0) efeitos.splice(i, 1);
+                });
+
+                frame++;
+                if (frame < totalFrames) {
+                    animationId = requestAnimationFrame(rodarVideo);
+                } else {
+                    ctx.fillStyle = "rgba(0,0,0,0.8)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+                    ctx.fillStyle = "#1ed760"; ctx.font = "bold 20px sans-serif"; ctx.textAlign = "center";
+                    ctx.fillText("✔️ COMBO CONCLUÍDO - TARGET ELIMINADO", canvas.width/2, canvas.height/2);
+                }
+            }
+            rodarVideo();
+        }
+
+        /* FUNÇÃO GITHUB: SIMULAÇÃO DE EXPORTAÇÃO REAL DE VÍDEO */
+        function baixarVideoFake() {
+            alert("Gerando e codificando vídeo MP4 da simulação da macro para repositório do GitHub... Aguarde 3 segundos.");
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.href = "#"; // Simulação de binário de download seguro
+                link.download = "combo_blox_fruits_pvp.mp4";
+                alert("Download do arquivo 'combo_blox_fruits_pvp.mp4' iniciado com sucesso para a pasta de downloads local!");
+            }, 2000);
+        }
+
+        function mudarAba(aba) {
+            const lista = document.getElementById('aba-lista');
+            const gerador = document.getElementById('aba-gerador');
+            const info = document.getElementById('aba-info');
+            document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+
+            lista.style.display = "none"; gerador.style.display = "none"; info.style.display = "none";
+            if (aba === 1) { lista.style.display = "grid"; document.getElementById('nav-p1').classList.add('active'); }
+            else if (aba === 2) { gerador.style.display = "block"; document.getElementById('nav-p2').classList.add('active'); }
+            else if (aba === 3) { info.style.display = "block"; document.getElementById('nav-p3').classList.add('active'); }
+        }
+
+        function gerarComboAleatorio() {
+            document.getElementById('combo-fruit-select').value = listaFrutas[Math.floor(Math.random() * listaFrutas.length)].nome;
+            document.getElementById('combo-sword-select').value = infoEspadas[Math.floor(Math.random() * infoEspadas.length)].nome;
+            document.getElementById('combo-gun-select').value = infoArmas[Math.floor(Math.random() * infoArmas.length)].nome;
+            document.getElementById('combo-style-select').value = infoEstilos[Math.floor(Math.random() * infoEstilos.length)].nome;
+            processarBuildPvP(Math.random() > 0.5);
+        }
+
+        function filtrarFrutas() {
+            const t = document.getElementById('searchBar').value.toLowerCase();
+            document.querySelectorAll('.card').forEach(c => {
+                c.style.display = c.getAttribute('data-title').toLowerCase().includes(t) ? "flex" : "none";
+            });
+        }
+        function curtir(b) { b.classList.toggle('liked'); const s = b.querySelector('.like-count'); s.innerText = parseInt(s.innerText) + (b.classList.contains('liked') ? 1 : -1); }
+    </script>
+</body>
+</html>
 
 
