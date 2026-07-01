@@ -224,7 +224,9 @@
             grid-column: 1 / -1;
             display: flex;
             justify-content: center;
+            gap: 15px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
 
         .btn-build {
@@ -234,7 +236,14 @@
             box-shadow: 0 4px 15px rgba(255, 68, 0, 0.4);
         }
 
-        .btn-build:hover { transform: scale(1.03); }
+        .btn-random {
+            background: linear-gradient(135deg, #0070dd 0%, #00d2ff 100%);
+            color: white; border: none; padding: 14px 40px; border-radius: 8px;
+            font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 112, 221, 0.4);
+        }
+
+        .btn-build:hover, .btn-random:hover { transform: scale(1.03); }
 
         /* Display do Combo Inteligente */
         .combo-panel {
@@ -346,6 +355,7 @@
 
                     <div class="button-wrapper">
                         <button class="btn-build" onclick="processarBuildPvP()">⚔️ GERAR ARSENAL E COMBINAÇÃO</button>
+                        <button class="btn-random" onclick="gerarComboAleatorio()">🎲 GERAR COMBO ALEATÓRIO</button>
                     </div>
                 </div>
 
@@ -507,6 +517,26 @@
             });
         }
 
+        // FUNÇÃO ADICIONADA: GERADOR ALEATÓRIO DE COMBO
+        function gerarComboAleatorio() {
+            // Sorteia índices aleatórios baseados no tamanho dos arrays
+            const frutaSorteada = listaFrutas[Math.floor(Math.random() * listaFrutas.length)].nome;
+            const espadaSorteada = listaEspadas[Math.floor(Math.random() * listaEspadas.length)];
+            const armaSorteada = listaArmas[Math.floor(Math.random() * listaArmas.length)];
+            const estiloSorteado = listaEstilos[Math.floor(Math.random() * listaEstilos.length)];
+            const racaSorteada = listaRacas[Math.floor(Math.random() * listaRacas.length)];
+
+            // Atualiza os seletores da tela com os valores sorteados
+            document.getElementById('combo-fruit-select').value = frutaSorteada;
+            document.getElementById('combo-sword-select').value = espadaSorteada;
+            document.getElementById('combo-gun-select').value = armaSorteada;
+            document.getElementById('combo-style-select').value = estiloSorteado;
+            document.getElementById('combo-race-select').value = racaSorteada;
+
+            // Roda o cálculo e exibe o resultado automaticamente
+            processarBuildPvP();
+        }
+
         // MOTOR DE CÁLCULO E SINERGIA DE COMBOS ADAPTATIVOS
         function processarBuildPvP() {
             const fruta = document.getElementById('combo-fruit-select').value;
@@ -515,7 +545,7 @@
             const estilo = document.getElementById('combo-style-select').value;
             const raca = document.getElementById('combo-race-select').value;
 
-            // Define elementos de texto na interface
+            // Define elementos de text na interface
             document.getElementById('out-fruta').innerText = fruta;
             document.getElementById('out-espada').innerText = espada;
             document.getElementById('out-arma').innerText = arma;
