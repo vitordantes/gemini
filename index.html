@@ -1,3 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blox Fruits - Ultimate Database & Combo Maker</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0e14;
+            color: #c9d1d9;
+        }
 
+        header {
+            background: linear-gradient(135deg, #121620 0%, #0b0e14 100%);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #ff4400;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        header .logo-container { border-left: 5px solid #ffaa00; padding-left: 15px; }
+        header h1 { margin: 0; color: #ffffff; font-size: 30px; letter-spacing: 1px; text-shadow: 0 0 12px rgba(255, 68, 0, 0.6); }
+        header p { margin: 5px 0 0 0; color: #8b949e; font-size: 13px; }
+
+        nav { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; }
+        nav ul li a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 14px; cursor: pointer; transition: all 0.3s; padding: 8px 14px; border-radius: 5px; }
+        nav ul li a:hover, nav ul li a.active { color: #ffaa00; background-color: #1c212c; }
+
+        .search-container input {
+            padding: 10px 18px; width: 180px; border: 2px solid #21262d; border-radius: 25px;
+            background-color: #0b0e14; color: white; font-size: 14px; transition: all 0.3s;
+        }
+        .search-container input:focus { outline: none; border-color: #ffaa00; width: 240px; }
+
+        main { padding: 30px 20px; max-width: 1300px; margin: 0 auto; }
+        h2 { border-left: 5px solid #ffaa00; padding-left: 12px; color: #ffffff; font-size: 24px; margin-bottom: 25px; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+
+        .card {
+            background-color: #121620; border-radius: 12px; padding: 15px; box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column; gap: 10px; border: 1px solid #21262d; transition: all 0.3s;
+        }
+        .card.glow-mythical:hover { border-color: #a335ee; box-shadow: 0 0 15px rgba(163, 53, 238, 0.4); transform: translateY(-3px); }
+        .card.glow-legendary:hover { border-color: #ff7f00; box-shadow: 0 0 15px rgba(255, 127, 0, 0.4); transform: translateY(-3px); }
+        .card.glow-rare:hover { border-color: #0070dd; box-shadow: 0 0 15px rgba(0, 112, 221, 0.4); transform: translateY(-3px); }
+        .card.glow-uncommon:hover { border-color: #1ed760; box-shadow: 0 0 15px rgba(30, 215, 96, 0.4); transform: translateY(-3px); }
+        .card.glow-common:hover { border-color: #8b949e; box-shadow: 0 0 15px rgba(139, 148, 158, 0.4); transform: translateY(-3px); }
+
+        .card .img-wrapper {
+            width: 100%; height: 140px; background-color: #161b22; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box;
+        }
+        .card img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .card h3 { margin: 5px 0 2px 0; color: #ffffff; font-size: 16px; }
+        .card p { color: #8b949e; font-size: 12px; line-height: 1.4; margin: 0; height: 50px; overflow: hidden; }
+
+        .rarity { font-size: 9px; font-weight: bold; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; width: fit-content; }
+        .mythical { background-color: #a335ee; color: white; }
+        .legendary { background-color: #ff7f00; color: white; }
+        .rare { background-color: #0070dd; color: white; }
+        .uncommon { background-color: #1ed760; color: black; }
+        .common { background-color: #8b949e; color: black; }
+
+        #aba-gerador { display: none; }
+        .generator-container { background-color: #121620; border-radius: 12px; padding: 30px; border: 1px solid #21262d; }
+
+        .selector-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .selector-box div { display: flex; flex-direction: column; gap: 5px; }
+        .selector-box label { font-size: 12px; color: #ffaa00; font-weight: bold; text-transform: uppercase; }
+        .selector-box select { padding: 12px 15px; background-color: #0b0e14; color: white; border: 2px solid #21262d; border-radius: 8px; font-size: 14px; outline: none; }
+
+        .button-wrapper { grid-column: 1 / -1; display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .btn-build, .btn-random { color: white; border: none; padding: 14px 30px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
+        .btn-build { background: linear-gradient(135deg, #ff4400 0%, #ffaa00 100%); box-shadow: 0 4px 15px rgba(255, 68, 0, 0.4); }
+        .btn-random { background: linear-gradient(135deg, #0070dd 0%, #00d2ff 100%); box-shadow: 0 4px 15px rgba(0, 112, 221, 0.4); }
+        .btn-build:hover, .btn-random:hover { transform: scale(1.02); }
+
+        .combo-panel { background-color: #0b0e14; border-radius: 10px; padding: 25px; border: 2px solid #21262d; display: none; }
+        .combo-title { font-size: 20px; color: #ffaa00; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #21262d; padding-bottom: 10px; display: flex; justify-content: space-between; }
+
+        .stats-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; background: #161b22; padding: 15px; border-radius: 8px; }
+        .damage-value { font-size: 28px; font-weight: bold; color: #ff4400; margin-bottom: 5px; }
+        .damage-bar { width: 100%; background: #21262d; height: 8px; border-radius: 4px; overflow: hidden; }
+        .damage-fill { height: 100%; background: linear-gradient(90deg, #ff4400, #ffaa00); width: 0%; transition: width 0.5s; }
+
+        .build-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 25px; }
+        .build-item { background-color: #121620; padding: 12px; border-radius: 8px; border-left: 4px solid #ff4400; }
+        .build-item span { font-size: 11px; color: #8b949e; text-transform: uppercase; display: block; }
+        .build-item strong { font-size: 14px; color: #ffffff; display: block; margin-top: 5px; }
+
+        .sequence-box { background-color: #1a1510; border: 1px solid #ffaa00; padding: 20px; border-radius: 8px; }
+        .macro-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .macro-key { background-color: #ff4400; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-family: monospace; }
+
+        footer { text-align: center; padding: 30px; background-color: #121620; margin-top: 60px; color: #8b949e; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <h1>Blox Fruits - Pro PvP Hub</h1>
+            <p>Database Global Completo (Todas as Frutas Atualizadas)</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a id="nav-p1" class="active" onclick="mudarAba(1)">Enciclopédia</a></li>
+                <li><a id="nav-p2" onclick="mudarAba(2)">⚔️ Montar Combo PvP</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Filtrar frutas..." oninput="filtrarFrutas()">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="aba-lista">
+            <h2>Todas as Frutas Catalogadas</h2>
+            <div class="grid-container" id="container-cards-frutas"></div>
+        </div>
+
+        <div id="aba-gerador">
+            <h2>Montador Inteligente de Combos Meta</h2>
+            <div class="generator-container">
+                <div class="selector-box">
+                    <div>
+                        <label for="combo-fruit-select">🍒 Selecionar Fruta</label>
+                        <select id="combo-fruit-select" onchange="verificarDespertar()"></select>
+                    </div>
+                    <div>
+                        <label for="combo-awaken-select">✨ Estado da Fruta</label>
+                        <select id="combo-awaken-select">
+                            <option value="normal">Normal (Sem Despertar)</option>
+                            <option value="awakened">Despertada (Awakened)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="combo-sword-select">⚔️ Selecionar Espada</label>
+                        <select id="combo-sword-select"></select>
+                    </div>
+                    <div>
+                        <label for="combo-gun-select">🔫 Selecionar Arma</label>
+                        <select id="combo-gun-select"></select>
+                    </div>
+                    <div>
+                        <label for="combo-style-select">👊 Estilo de Luta</label>
+                        <select id="combo-style-select"></select>
+                    </div>
+
+                    <div class="button-wrapper">
+                        <button class="btn-build" onclick="processarBuildPvP()">⚔️ GERAR COMBO ABSOLUTO</button>
+                        <button class="btn-random" onclick="gerarComboAleatorio()">🎲 SORTEIO ALEATÓRIO</button>
+                    </div>
+                </div>
+
+                <div class="combo-panel" id="pvp-combo-result">
+                    <div class="combo-title">
+                        <span>BUILD PVP SINCRONIZADA</span>
+                    </div>
+
+                    <div class="stats-panel">
+                        <div class="damage-box">
+                            <h4 style="margin:0; font-size:12px; color:#ffaa00;">Dano Combinado Estimado</h4>
+                            <div class="damage-value" id="out-dano-num">0</div>
+                            <div class="damage-bar"><div class="damage-fill" id="out-dano-bar"></div></div>
+                        </div>
+                        <div class="stats-box">
+                            <h4 style="margin:0; font-size:12px; color:#ffaa00;">Status Recomendado</h4>
+                            <div style="font-size:13px; margin-top:5px;">Soco/Defesa: <strong style="color:#1ed760;">2550</strong> | Status Principal: <strong style="color:#1ed760;">2550</strong></div>
+                        </div>
+                    </div>
+                    
+                    <div class="build-grid">
+                        <div class="build-item"><span>🍒 Fruta</span><strong id="out-fruta">-</strong></div>
+                        <div class="build-item"><span>✨ Estado</span><strong id="out-estado">-</strong></div>
+                        <div class="build-item"><span>⚔️ Espada</span><strong id="out-espada">-</strong></div>
+                        <div class="build-item"><span>🔫 Arma</span><strong id="out-arma">-</strong></div>
+                        <div class="build-item"><span>👊 Estilo</span><strong id="out-estilo">-</strong></div>
+                    </div>
+
+                    <div class="sequence-box">
+                        <div style="color:#ffaa00; font-weight:bold;">Ordem de Execução Macro:</div>
+                        <div class="macro-buttons" id="out-macro-keys"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Blox Fruits PvP Hub - Base de Dados Completa e Estável.</p>
+    </footer>
+
+    <script>
+        // Imagens Oficiais hospedadas nos servidores da Roblox (100% Estáveis, sem Bloqueio de Segurança)
+        const listaFrutas = [
+            // MYTHICAL
+            { nome: "Kitsune", raridade: "mythical", mult: 1.50, podeDespertar: false, asset: "15546115995", desc: "Velocidade mística absurda e chamas azuis espirituais." },
+            { nome: "Leopard", raridade: "mythical", mult: 1.45, podeDespertar: false, asset: "10471131442", desc: "Transformação veloz focada em spam de golpes físicos." },
+            { nome: "Dragon", raridade: "mythical", mult: 1.48, podeDespertar: false, asset: "4503254215", desc: "Altíssima redução de dano passiva e rajadas de fogo." },
+            { nome: "Spirit", raridade: "mythical", mult: 1.40, podeDespertar: false, asset: "11414723307", desc: "Invoca almas de gelo e fogo para suporte e ataque." },
+            { nome: "Control", raridade: "mythical", mult: 1.35, podeDespertar: false, asset: "4503255673", desc: "Cria uma área de manipulação para levitar objetos." },
+            { nome: "Venom", raridade: "mythical", mult: 1.38, podeDespertar: false, asset: "7535496468", desc: "Dano contínuo por veneno que derrete a vida do alvo." },
+            { nome: "Shadow", raridade: "mythical", mult: 1.34, podeDespertar: false, asset: "7535494879", desc: "Combina mecânicas de vampirismo com controle de sombras." },
+            { nome: "Dough", raridade: "mythical", mult: 1.32, podeDespertar: true, asset: "5570535350", desc: "Excelente para prender adversários em combos infinitos." },
+            { nome: "T-Rex", raridade: "mythical", mult: 1.42, podeDespertar: false, asset: "15546110292", desc: "Estilo predador pesado com marcas de mordidas e sangramento." },
+            { nome: "Mammoth", raridade: "mythical", mult: 1.39, podeDespertar: false, asset: "14838634848", desc: "Poder de atropelamento massivo e grande resistência." },
+            { nome: "Gravity", raridade: "mythical", mult: 1.25, podeDespertar: false, asset: "4503254924", desc: "Atrai meteoros e altera a gravidade do campo." },
+            
+            // LEGENDARY
+            { nome: "Blizzard", raridade: "legendary", mult: 1.28, podeDespertar: false, asset: "11721528659", desc: "Cria tempestades de neve de grande área de efeito." },
+            { nome: "Sound", raridade: "legendary", mult: 1.24, podeDespertar: false, asset: "14838640026", desc: "Ondas sonoras que buffam aliados e causam desorientação." },
+            { nome: "Rumble", raridade: "legendary", mult: 1.22, podeDespertar: true, asset: "4503252516", desc: "Fruta do raio perfeita para build de Espada devido aos stuns." },
+            { nome: "Portal", raridade: "legendary", mult: 1.15, podeDespertar: false, asset: "11414728562", desc: "A rainha da mobilidade pvp. Teletransportes instantâneos." },
+            { nome: "Phoenix", raridade: "legendary", mult: 1.20, podeDespertar: true, asset: "4503251410", desc: "Cura em tempo real e transformação em pássaro de fogo." },
+            { nome: "Pain", raridade: "legendary", mult: 1.18, podeDespertar: false, asset: "4503250493", desc: "Antiga Paw. Repele ataques e projeta projéteis de pressão." },
+            { nome: "Spider", raridade: "legendary", mult: 1.21, podeDespertar: true, asset: "4503253683", desc: "Antiga String. Teias afiadas de longo alcance e precisão." },
+            { nome: "Love", raridade: "legendary", mult: 1.16, podeDespertar: false, asset: "4503251912", desc: "Invoca um cupido montável e causa atração." },
+            { nome: "Buddha", raridade: "legendary", mult: 1.10, podeDespertar: true, asset: "4503247953", desc: "Aumenta o tamanho do personagem dando alcance gigante." },
+            { nome: "Quake", raridade: "legendary", mult: 1.23, podeDespertar: true, asset: "4503253011", desc: "Ondas de choque brutas que quebram o solo." },
+
+            // RARE
+            { nome: "Ghost", raridade: "rare", mult: 1.12, podeDespertar: false, asset: "15170364951", desc: "Gera clones fantasmas e possui uma mecânica de ressurreição." },
+            { nome: "Barrier", raridade: "rare", mult: 1.05, podeDespertar: false, asset: "4503247348", desc: "Cria escudos sólidos para bloquear a passagem de inimigos." },
+            { nome: "Light", raridade: "rare", mult: 1.16, podeDespertar: true, asset: "4503249767", desc: "Velocidade da luz, ótimos projéteis e uma espada acoplada." },
+            { nome: "Rubber", raridade: "rare", mult: 1.10, podeDespertar: false, asset: "4503252199", desc: "Imunidade a eletricidade e ataques baseados em esticamento." },
+            { nome: "Magma", raridade: "rare", mult: 1.20, podeDespertar: true, asset: "4503250131", desc: "O maior dano passivo por segundo sobre o chão." },
+            { nome: "Diamond", raridade: "rare", mult: 1.02, podeDespertar: false, asset: "4503248464", desc: "Aumenta drasticamente a defesa do usuário enrijecendo o corpo." },
+
+            // UNCOMMON & COMMON
+            { nome: "Sand", raridade: "uncommon", mult: 1.08, podeDespertar: true, asset: "4503253406", desc: "Focada em atordoamento por areia movediça." },
+            { nome: "Dark", raridade: "uncommon", mult: 1.06, podeDespertar: true, asset: "4503248161", desc: "Cria buracos negros perfeitos para iniciar combos." },
+            { nome: "Falcon", raridade: "uncommon", mult: 1.01, podeDespertar: false, asset: "4503248834", desc: "Garante saltos mais altos e asas de falcão." },
+            { nome: "Ice", raridade: "uncommon", mult: 1.11, podeDespertar: true, asset: "4503249455", desc: "Congela oponentes diretamente no chão de forma instantânea." },
+            { nome: "Flame", raridade: "uncommon", mult: 1.13, podeDespertar: true, asset: "4503249141", desc: "Ataques clássicos de fogo de médio alcance." },
+            { nome: "Spike", raridade: "uncommon", mult: 1.00, podeDespertar: false, asset: "4503253987", desc: "Lança esferas repletas de espinhos rígidos." },
+            { nome: "Smoke", raridade: "uncommon", mult: 1.02, podeDespertar: false, asset: "4503253556", desc: "Permite voar deixando uma trilha de fumaça." },
+            { nome: "Rocket", raridade: "common", mult: 1.00, podeDespertar: false, asset: "15170359325", desc: "Explosões consecutivas com propulsão a jato." },
+            { nome: "Spin", raridade: "common", mult: 0.95, podeDespertar: false, asset: "4503254559", desc: "Gira o próprio corpo para voar de forma helicoidal." },
+            { nome: "Chop", raridade: "common", mult: 0.98, podeDespertar: false, asset: "4503248053", desc: "Imunidade passiva completa contra qualquer golpe de Espada." },
+            { nome: "Spring", raridade: "common", mult: 0.96, podeDespertar: false, asset: "4503254101", desc: "Transforma as pernas em molas para saltos em zigue-zague." },
+            { nome: "Bomb", raridade: "common", mult: 1.02, podeDespertar: false, asset: "4503247656", desc: "Autodestruição e detonações em área." }
+        ];
+
+        const infoEspadas = [{ nome: "Cursed Dual Katana", dano: 4800 }, { nome: "Dark Blade", dano: 4900 }, { nome: "Shark Anchor", dano: 4650 }, { nome: "Tushita", dano: 4500 }];
+        const infoArmas = [{ nome: "Soul Guitar", dano: 1200 }, { nome: "Acidum Rifle", dano: 1100 }, { nome: "Kabucha", dano: 900 }];
+        const infoEstilos = [{ nome: "Godhuman", dano: 5200 }, { nome: "Sanguine Art", dano: 5400 }, { nome: "Electric Claw", dano: 5000 }];
+
+        window.onload = function() {
+            renderizarCardsFrutas();
+            popularSeletores();
+            verificarDespertar();
+        };
+
+        function renderizarCardsFrutas() {
+            const container = document.getElementById('container-cards-frutas');
+            container.innerHTML = "";
+            listaFrutas.forEach(fruta => {
+                const card = document.createElement('div');
+                card.classList.add('card', `glow-${fruta.raridade}`);
+                card.setAttribute('data-title', fruta.nome);
+                card.innerHTML = `
+                    <div class="img-wrapper">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=${fruta.asset}&width=150&height=150&format=png" alt="${fruta.nome}">
+                    </div>
+                    <span class="rarity ${fruta.raridade}">${fruta.raridade}</span>
+                    <h3>${fruta.nome} ${fruta.podeDespertar ? '🔄' : ''}</h3>
+                    <p>${fruta.desc}</p>
+                    <div style="font-size:11px; color:#ffaa00; font-weight:bold;">${fruta.podeDespertar ? "Suporta Despertar" : "Apenas Normal"}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function popularSeletores() {
+            povoarSelect('combo-fruit-select', listaFrutas.map(f => f.nome));
+            povoarSelect('combo-sword-select', infoEspadas.map(e => e.nome));
+            povoarSelect('combo-gun-select', infoArmas.map(a => a.nome));
+            povoarSelect('combo-style-select', infoEstilos.map(s => s.nome));
+        }
+
+        function povoarSelect(id
 
 
